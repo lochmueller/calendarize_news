@@ -1,0 +1,39 @@
+{namespace n=Tx_News_ViewHelpers}
+
+<f:alias map="{news: index.originalObject}">
+	<div class="panel panel-default">
+		<div class="panel-body">
+
+			<div class="media calendarize-item">
+				<f:for each="{news.images}" as="image" iteration="i">
+					<f:if condition="{i.isFirst}">
+						<n:link newsItem="{news}" class="pull-left">
+							<f:image src="{image.originalResource.publicUrl}" alt="" maxWidth="160" maxHeight="160" class="media-object img-rounded" />
+						</n:link>
+					</f:if>
+				</f:for>
+
+				<div class="media-body">
+					<h2>
+						<n:link newsItem="{news}">
+							<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+						</n:link>
+					</h2>
+					<h4>
+						<f:render partial="DateInformation" arguments="{index: index}" />
+					</h4>
+
+					<p>
+						<f:format.crop maxCharacters="180" append="&nbsp;[...]">
+							<f:format.stripTags>{news.teaser}</f:format.stripTags>
+						</f:format.crop>
+					</p>
+
+					<n:link newsItem="{news}" class="btn btn-default btn-primary">
+						More <span class="glyphicon glyphicon-arrow-right"></span>
+					</n:link>
+				</div>
+			</div>
+		</div>
+	</div>
+</f:alias>

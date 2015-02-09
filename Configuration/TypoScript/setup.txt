@@ -1,0 +1,10 @@
+/**
+ * Configuration
+ */
+plugin.tx_calendarize {
+	view {
+		partialRootPaths {
+			200 = EXT:calendarize_news/Resources/Private/Partials/
+		}
+	}
+}
