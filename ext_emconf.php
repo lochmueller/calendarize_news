@@ -19,7 +19,7 @@ $EM_CONF['calendarize_news'] = array(
 	'author_email'     => 'tim@fruit-lab.de',
 	'constraints'      => array(
 		'depends' => array(
-			'calendarize' => '1.0.0-0.0.0',
+			'calendarize' => '1.2.0-0.0.0',
 			'news'        => '3.0.0-0.0.0',
 		),
 	),
