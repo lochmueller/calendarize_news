@@ -29,7 +29,6 @@ class Register {
 			'partialIdentifier' => 'News',
 			'tableName'         => 'tx_news_domain_model_news',
 			'required'          => FALSE,
-			// 'defaultDateField' => 'startdate' -- Startdate referenzieren für einfachere Configuration
 		);
 	}
 
