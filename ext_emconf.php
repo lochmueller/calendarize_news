@@ -12,14 +12,14 @@ $EM_CONF['calendarize_news'] = array(
 	'title'            => 'Calendarize for News',
 	'description'      => 'Add Event options to the news extension',
 	'category'         => 'misc',
-	'version'          => '0.1.0',
+	'version'          => '0.1.1',
 	'state'            => 'beta',
 	'clearcacheonload' => 1,
 	'author'           => 'Tim Lochmüller',
 	'author_email'     => 'tim@fruit-lab.de',
 	'constraints'      => array(
 		'depends' => array(
-			'typo3'      => '6.2.0-7.1.99',
+			'typo3'       => '6.2.0-7.1.99',
 			'calendarize' => '1.2.0-0.0.0',
 			'news'        => '3.0.0-0.0.0',
 		),
