@@ -25,7 +25,7 @@ class Register {
 		return array(
 			'uniqueRegisterKey' => 'News',
 			'title'             => 'News Event',
-			'modelName'         => 'Tx_News_Domain_Model_News',
+			'modelName'         => 'GeorgRinger\\News\\Domain\\Model\\News',
 			'partialIdentifier' => 'News',
 			'tableName'         => 'tx_news_domain_model_news',
 			'required'          => FALSE,
