@@ -1,0 +1,2 @@
+# cat=basic/enable; type=boolean; label=Replace News Repository Index Selection:Repalce the normal News selection by a index based selection. The index is get from the calendarize extension
+replaceNewsRepositoryByIndexSelection = 0

@@ -23,8 +23,7 @@ class Register {
 	 */
 	static public function getAutoloaderConfiguration() {
 		return array(
-			'StaticTyposcript',
-			'Xclass'
+			'StaticTyposcript'
 		);
 	}
 
