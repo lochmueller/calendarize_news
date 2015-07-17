@@ -11,5 +11,5 @@ if (!defined('TYPO3_MODE')) {
 	die('Access denied.');
 }
 
-\HDNET\Autoloader\Loader::extLocalconf('HDNET', 'calendarize_news');
+\HDNET\Autoloader\Loader::extLocalconf('HDNET', 'calendarize_news', \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration());
 \HDNET\Calendarize\Register::extLocalconf(\HDNET\CalendarizeNews\Register::getConfiguration());

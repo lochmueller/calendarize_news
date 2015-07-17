@@ -17,11 +17,23 @@ namespace HDNET\CalendarizeNews;
 class Register {
 
 	/**
+	 * Get the autoloader configuration
+	 *
+	 * @return array
+	 */
+	static public function getAutoloaderConfiguration() {
+		return array(
+			'StaticTyposcript',
+			'Xclass'
+		);
+	}
+
+	/**
 	 * Get the configuration
 	 *
 	 * @return array
 	 */
-	static function getConfiguration() {
+	static public function getConfiguration() {
 		return array(
 			'uniqueRegisterKey' => 'News',
 			'title'             => 'News Event',
