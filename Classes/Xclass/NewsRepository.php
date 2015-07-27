@@ -8,6 +8,8 @@
 namespace HDNET\CalendarizeNews\Xclass;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
+use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @todo General class information
@@ -34,6 +36,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository 
 	 */
 	public function findDemanded(DemandInterface $demand, $respectEnableFields = TRUE) {
 		$return = parent::findDemanded($demand, $respectEnableFields);
+		if (!($demand instanceof NewsDemand)) {
+			return $return;
+		}
+		if (!GeneralUtility::isFirstPartOfStr($demand->getOrder(), 'calendarize')) {
+			return $return;
+		}
 		$query = $return->getQuery();
 		$query = $this->objectToObject($query, 'HDNET\\CalendarizeNews\\Persistence\\IndexQuery');
 		return $query->execute();
