@@ -21,9 +21,9 @@ class IndexQuery extends \TYPO3\CMS\Extbase\Persistence\Generic\Query {
 	 * @api
 	 */
 	public function execute($returnRawQueryResult = FALSE) {
-		if ($returnRawQueryResult === TRUE || $this->getQuerySettings()
-				->getReturnRawQueryResult() === TRUE
-		) {
+		$querySettings = $this->getQuerySettings();
+		$deprecatedRawResult = method_exists($querySettings, 'getReturnRawQueryResult') && $querySettings->getReturnRawQueryResult() === TRUE;
+		if ($returnRawQueryResult === TRUE || $deprecatedRawResult) {
 			return $this->persistenceManager->getObjectDataByQuery($this);
 		} else {
 			return $this->objectManager->get('HDNET\\CalendarizeNews\\Persistence\\IndexResult', $this);
