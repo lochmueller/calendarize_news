@@ -11,8 +11,8 @@
 $EM_CONF[$_EXTKEY] = array(
     'title'            => 'Calendarize for News',
     'description'      => 'Add Event options to the news extension',
-    'category'         => 'misc',
-    'version'          => '0.3.0',
+    'category'         => 'fe',
+    'version'          => '0.3.1',
     'state'            => 'beta',
     'clearcacheonload' => 1,
     'author'           => 'Tim Lochmüller',
