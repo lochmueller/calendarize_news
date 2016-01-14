@@ -19,23 +19,18 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
  */
 class NewsOverwrite implements SingletonInterface {
 
-	/**
-	 * Day seconds
-	 *
-	 * @var int
-	 */
-	const DAY = 86400;
 
 	/**
 	 * @param News  $news
 	 * @param array $index
 	 */
 	public function overWriteNewsPropertiesByIndexArray(News $news, array $index) {
-		ObjectAccess::setProperty($news, 'datetime', new \DateTime('@' . $this->getCombinedTime($index['start_date'], $index['start_time'])));
+
+		ObjectAccess::setProperty($news, 'datetime',$this->getCombinedTimeAsDatetime($index['start_date'],$index['start_time']));
 		ObjectAccess::setProperty($news, 'sorting', $index, TRUE);
 		if (ExtensionManagementUtility::isLoaded('eventnews')) {
 			ObjectAccess::setProperty($news, 'isEvent', TRUE, TRUE);
-			ObjectAccess::setProperty($news, 'eventEnd', new \DateTime('@' . $this->getCombinedTime($index['end_date'], $index['end_time'])), TRUE);
+			ObjectAccess::setProperty($news, 'eventEnd',$this->getCombinedTimeAsDatetime($index['end_date'],$index['end_time']), TRUE);
 			ObjectAccess::setProperty($news, 'fullDay', (bool)$index['all_day'], TRUE);
 		}
 	}
@@ -59,25 +54,24 @@ class NewsOverwrite implements SingletonInterface {
 	}
 
 	/**
-	 * Get combined time
+	 * Get combined time as datetime
 	 *
-	 * - Remove the time of the date information
-	 * - Remove the date if the time information
 	 * - combine both values
 	 *
 	 * @param int $dateTimestamp
 	 * @param int $timeTimestamp
 	 *
-	 * @return int
+	 * @return /DateTime
 	 */
-	protected function getCombinedTime($dateTimestamp, $timeTimestamp) {
-		$dateTimestamp = floor($dateTimestamp / self::DAY) * self::DAY;
-		if ($timeTimestamp <= 0) {
-			return $dateTimestamp;
-		}
-		if ($timeTimestamp < self::DAY) {
-			return $dateTimestamp + $timeTimestamp;
-		}
-		return $dateTimestamp + ($timeTimestamp % self::DAY);
+	protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp) {
+
+		$newDateTime = new \DateTime('@' .$dateTimestamp);
+		//Set the right timezone because the DB timestamp is UTC
+		$newDateTime->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+		$timeToAdd = new \DateInterval('PT'.$timeTimestamp.'S');
+		$newDateTime->add($timeToAdd);
+
+		return $newDateTime;
 	}
+
 }
