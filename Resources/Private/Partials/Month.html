@@ -1,0 +1,117 @@
+{namespace c=HDNET\Calendarize\ViewHelpers}
+{namespace n=GeorgRinger\News\ViewHelpers}
+
+<f:comment>
+	Adaption for new integration in the link detail behaviour!
+</f:comment>
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td colspan="7">
+				<f:if condition="{settings.monthPid}">
+					<f:if condition="{c:ifDateUpper(base: settings.dateLimitBrowserPrev, check:date)}">
+						<c:dateTime.modify modification="-1 month">{date}</c:dateTime.modify>
+						<c:link.month pageUid="{settings.monthPid}" date="{date}">
+							&lt;
+						</c:link.month>
+						<c:dateTime.modify modification="+1 month">{date}</c:dateTime.modify>
+					</f:if>
+				</f:if>
+				<f:format.date format="%B %Y">{date}</f:format.date>
+				<f:if condition="{settings.monthPid}">
+					<f:if condition="{c:ifDateLower(base: settings.dateLimitBrowserNext, check:date)}">
+						<c:dateTime.modify modification="+1 month">{date}</c:dateTime.modify>
+						<c:link.month pageUid="{settings.monthPid}" date="{date}">
+							&gt;
+						</c:link.month>
+						<c:dateTime.modify modification="-1 month">{date}</c:dateTime.modify>
+					</f:if>
+				</f:if>
+			</td>
+		</tr>
+	</thead>
+	<tbody class="regularMonthView">
+		<c:loop.weeksInMonth date="{date}" iteration="week" weekStartsAt="{settings.weekStart}">
+			<tr>
+				<c:loop.daysInWeek date="{week.calendar.date}" iteration="day" weekStartsAt="{settings.weekStart}">
+					<f:if condition="{c:dateTime.indexOnDay(indices: indices, day:day.calendar.date)}">
+						<f:then>
+							<td class="hasEvents{f:if(condition: '{date->f:format.date(format: \'d.m.Y\')} == {day.calendar.date->f:format.date(format: \'d.m.Y\')}', then: ' selectedDay')}">
+								<f:if condition="{settings.dayPid}">
+									<f:then>
+										<c:link.day pageUid="{settings.dayPid}" date="{day.calendar.date}">
+											<f:format.date format="d">{day.calendar.date}</f:format.date>
+										</c:link.day>
+									</f:then>
+									<f:else>
+										<f:format.date format="d">{day.calendar.date}</f:format.date>
+									</f:else>
+								</f:if>
+								<f:if condition="{settings.detailPid}">
+									<ul class="events">
+										<f:for each="{indices}" as="index">
+											<f:if condition="{c:dateTime.indexOnDay(index: index, day:day.calendar.date)}">
+												<li>
+													<f:if condition="{index.uniqueRegisterKey}=='News'">
+														<f:then>
+															<n:link newsItem="{index.originalObject}">
+																<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+															</n:link>
+														</f:then>
+														<f:else>
+															<c:link.index index="{index}" pageUid="{settings.detailPid}">
+																<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
+															</c:link.index>
+														</f:else>
+													</f:if>
+												</li>
+											</f:if>
+										</f:for>
+									</ul>
+								</f:if>
+							</td>
+						</f:then>
+						<f:else>
+							<td class="{f:if(condition: '{date->f:format.date(format: \'d.m.Y\')} == {day.calendar.date->f:format.date(format: \'d.m.Y\')}', then: 'selectedDay')}">
+								<f:format.date format="d">{day.calendar.date}</f:format.date>
+							</td>
+						</f:else>
+					</f:if>
+				</c:loop.daysInWeek>
+			</tr>
+		</c:loop.weeksInMonth>
+	</tbody>
+</table>
+
+
+
+
+<f:if condition="{settings.useMomentFullCalendarIo}">
+	<div class="fullCalendarIo">&nbsp;</div>
+
+	<script type="text/javascript">
+		var monthEvents = [];
+		var monthEventsCurrentDate = '<f:format.date format="Y-m-d">{date}</f:format.date>';
+		<f:for each="{indices}" as="index">
+			<![CDATA[tmp = {};]]>
+		    tmp.id = {index.uid};
+			tmp.allDay = false;
+			tmp.title = <c:jsQuote><f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" /></c:jsQuote>;
+			tmp.start = '<f:format.date format="{f:if(condition: index.allDay, then: 'Y-m-d', else: 'c')}">{index.startDateComplete}</f:format.date>';
+			tmp.end = '<f:format.date format="{f:if(condition: index.allDay, then: 'Y-m-d', else: 'c')}">{index.endDateComplete}</f:format.date>';
+			<f:if condition="{index.allDay}">
+				tmp.allDay = false;
+			</f:if>
+			<f:if condition="{index.uniqueRegisterKey}=='News'">
+				<f:then>
+					tmp.url = '<n:link newsItem="{index.originalObject}" uriOnly="1" />';
+				</f:then>
+				<f:else>
+					tmp.url = '<c:uri.index index="{index}" pageUid="{settings.detailPid}" />';
+				</f:else>
+			</f:if>
+			monthEvents.push(tmp);
+		</f:for>
+	</script>
+</f:if>
