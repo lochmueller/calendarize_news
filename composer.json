@@ -1,0 +1,38 @@
+{
+  "name": "lochmueller/calendarize_news",
+  "version": "0.3.1",
+  "type": "typo3-cms-extension",
+  "description": "Add Event options to the news extension",
+  "autoload": {
+    "psr-4": {
+      "HDNET\\CalendarizeNews\\": "Classes/"
+    }
+  },
+  "keywords": [
+    "TYPO3 CMS",
+    "Calendarize",
+    "News",
+    "Extbase"
+  ],
+  "authors": [
+    {
+      "name": "Tim Lochmüller",
+      "email": "webmaster@fruit-lab.de",
+      "role": "Developer",
+      "homepage": "https://github.com/lochmueller"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "typo3/cms-core": "~6.2.14|>=7.4.0,<8.0"
+  },
+  "replace": {
+    "calendarize_news": "self.version",
+    "typo3-ter/calendarize_news": "self.version"
+  },
+  "homepage": "https://github.com/lochmueller/calendarize_news",
+  "license": "GPL-2.0+",
+  "support": {
+    "issues": "https://github.com/lochmueller/calendarize_news/issues"
+  }
+}
