@@ -1,6 +1,6 @@
 {
   "name": "lochmueller/calendarize_news",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "type": "typo3-cms-extension",
   "description": "Add Event options to the news extension",
   "autoload": {
