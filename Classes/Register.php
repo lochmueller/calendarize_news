@@ -14,33 +14,36 @@ namespace HDNET\CalendarizeNews;
  * @author Tim Lochmüller
  */
 
-class Register {
+class Register
+{
 
-	/**
-	 * Get the autoloader configuration
-	 *
-	 * @return array
-	 */
-	static public function getAutoloaderConfiguration() {
-		return array(
-			'StaticTyposcript'
-		);
-	}
+    /**
+     * Get the autoloader configuration
+     *
+     * @return array
+     */
+    static public function getAutoloaderConfiguration()
+    {
+        return array(
+            'StaticTyposcript'
+        );
+    }
 
-	/**
-	 * Get the configuration
-	 *
-	 * @return array
-	 */
-	static public function getConfiguration() {
-		return array(
-			'uniqueRegisterKey' => 'News',
-			'title'             => 'News Event',
-			'modelName'         => 'GeorgRinger\\News\\Domain\\Model\\News',
-			'partialIdentifier' => 'News',
-			'tableName'         => 'tx_news_domain_model_news',
-			'required'          => FALSE,
-		);
-	}
+    /**
+     * Get the configuration
+     *
+     * @return array
+     */
+    static public function getConfiguration()
+    {
+        return array(
+            'uniqueRegisterKey' => 'News',
+            'title'             => 'News Event',
+            'modelName'         => 'GeorgRinger\\News\\Domain\\Model\\News',
+            'partialIdentifier' => 'News',
+            'tableName'         => 'tx_news_domain_model_news',
+            'required'          => false,
+        );
+    }
 
 }
