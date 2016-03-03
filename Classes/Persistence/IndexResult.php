@@ -44,7 +44,7 @@ class IndexResult extends QueryResult
     protected function initializeIndex()
     {
         if (!is_array($this->indexResult)) {
-            $newsIds = array();
+            $newsIds = [];
             $query = clone $this->query;
             $query->setLimit(99999999);
             $query->setOffset(0);
@@ -76,7 +76,7 @@ class IndexResult extends QueryResult
             /** @var NewsRepository $newsRepository */
             $newsRepository = HelperUtility::create('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
             $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
-            $this->queryResult = array();
+            $this->queryResult = [];
             foreach ($selection as $item) {
                 $news = $newsRepository->findByIdentifier((int)$item['foreign_uid']);
                 if (is_object($news)) {

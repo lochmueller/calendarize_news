@@ -44,7 +44,7 @@ class NewsOverwrite implements SingletonInterface
      */
     public function overWriteNewsPropertiesByIndexObject(News $news, Index $index)
     {
-        $array = array(
+        $array = [
             'uid'        => $index->getUid(),
             'start_date' => $index->getStartDate()
                 ->getTimestamp(),
@@ -53,7 +53,7 @@ class NewsOverwrite implements SingletonInterface
             'start_time' => $index->isAllDay() ? 0 : $index->getStartTime(),
             'end_time'   => $index->isAllDay() ? 0 : $index->getEndTime(),
             'all_day'    => $index->isAllDay(),
-        );
+        ];
         $this->overWriteNewsPropertiesByIndexArray($news, $array);
     }
 

@@ -8,7 +8,7 @@
  */
 
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title'            => 'Calendarize for News',
     'description'      => 'Add Event options to the news extension',
     'category'         => 'fe',
@@ -17,11 +17,11 @@ $EM_CONF[$_EXTKEY] = array(
     'clearcacheonload' => 1,
     'author'           => 'Tim Lochmüller',
     'author_email'     => 'tim@fruit-lab.de',
-    'constraints'      => array(
-        'depends' => array(
+    'constraints'      => [
+        'depends' => [
             'typo3'       => '6.2.0-7.99.99',
             'calendarize' => '2.0.0-0.0.0',
             'news'        => '4.0.0-0.0.0',
-        ),
-    ),
-);
+        ],
+    ],
+];

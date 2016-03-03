@@ -30,9 +30,9 @@ class NewsLinkViewHelper extends LinkViewHelper
      */
     public function render(
         \GeorgRinger\News\Domain\Model\News $newsItem,
-        array $settings = array(),
+        array $settings = [],
         $uriOnly = false,
-        $configuration = array(),
+        $configuration = [],
         $content = ''
     ) {
         try {

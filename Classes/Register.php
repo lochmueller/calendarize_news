@@ -24,9 +24,9 @@ class Register
      */
     static public function getAutoloaderConfiguration()
     {
-        return array(
+        return [
             'StaticTyposcript'
-        );
+        ];
     }
 
     /**
@@ -36,14 +36,14 @@ class Register
      */
     static public function getConfiguration()
     {
-        return array(
+        return [
             'uniqueRegisterKey' => 'News',
             'title'             => 'News Event',
             'modelName'         => 'GeorgRinger\\News\\Domain\\Model\\News',
             'partialIdentifier' => 'News',
             'tableName'         => 'tx_news_domain_model_news',
             'required'          => false,
-        );
+        ];
     }
 
 }

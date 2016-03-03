@@ -8,7 +8,7 @@
  */
 
 if (!defined('TYPO3_MODE')) {
-	die('Access denied.');
+    die('Access denied.');
 }
 
 \HDNET\Autoloader\Loader::extTables('HDNET', 'calendarize_news', \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration());
