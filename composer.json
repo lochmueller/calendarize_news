@@ -28,7 +28,7 @@
   },
   "replace": {
     "calendarize_news": "self.version",
-    "typo3-ter/calendarize_news": "self.version"
+    "typo3-ter/calendarize-news": "self.version"
   },
   "homepage": "https://github.com/lochmueller/calendarize_news",
   "license": "GPL-2.0+",
