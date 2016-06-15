@@ -22,7 +22,7 @@ class Register
      *
      * @return array
      */
-    static public function getAutoloaderConfiguration()
+    public static function getAutoloaderConfiguration()
     {
         return [
             'StaticTyposcript'
@@ -34,7 +34,7 @@ class Register
      *
      * @return array
      */
-    static public function getConfiguration()
+    public static function getConfiguration()
     {
         return [
             'uniqueRegisterKey' => 'News',
@@ -45,5 +45,4 @@ class Register
             'required'          => false,
         ];
     }
-
 }

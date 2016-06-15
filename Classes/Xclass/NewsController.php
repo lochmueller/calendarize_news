@@ -39,5 +39,4 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $overwriteService->overWriteNewsPropertiesByIndexObject($news, $index);
         }
     }
-
 }

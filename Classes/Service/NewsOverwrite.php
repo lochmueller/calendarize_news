@@ -27,13 +27,20 @@ class NewsOverwrite implements SingletonInterface
     public function overWriteNewsPropertiesByIndexArray(News $news, array $index)
     {
 
-        ObjectAccess::setProperty($news, 'datetime',
-            $this->getCombinedTimeAsDatetime($index['start_date'], $index['start_time']));
+        ObjectAccess::setProperty(
+            $news,
+            'datetime',
+            $this->getCombinedTimeAsDatetime($index['start_date'], $index['start_time'])
+        );
         ObjectAccess::setProperty($news, 'sorting', $index, true);
         if (ExtensionManagementUtility::isLoaded('eventnews')) {
             ObjectAccess::setProperty($news, 'isEvent', true, true);
-            ObjectAccess::setProperty($news, 'eventEnd', $this->getCombinedTimeAsDatetime($index['end_date'], $index['end_time']),
-                true);
+            ObjectAccess::setProperty(
+                $news,
+                'eventEnd',
+                $this->getCombinedTimeAsDatetime($index['end_date'], $index['end_time']),
+                true
+            );
             ObjectAccess::setProperty($news, 'fullDay', (bool)$index['all_day'], true);
         }
     }
@@ -78,5 +85,4 @@ class NewsOverwrite implements SingletonInterface
 
         return $newDateTime;
     }
-
 }

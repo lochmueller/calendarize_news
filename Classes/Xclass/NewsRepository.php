@@ -60,8 +60,11 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      */
     function objectToObject($instance, $className)
     {
-        return unserialize(sprintf('O:%d:"%s"%s', strlen($className), $className,
-            strstr(strstr(serialize($instance), '"'), ':')));
+        return unserialize(sprintf(
+            'O:%d:"%s"%s',
+            strlen($className),
+            $className,
+            strstr(strstr(serialize($instance), '"'), ':')
+        ));
     }
-
 }

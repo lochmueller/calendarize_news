@@ -12,8 +12,11 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-\HDNET\Autoloader\Loader::extLocalconf('HDNET', 'calendarize_news',
-    \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration());
+\HDNET\Autoloader\Loader::extLocalconf(
+    'HDNET',
+    'calendarize_news',
+    \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration()
+);
 \HDNET\Calendarize\Register::extLocalconf(\HDNET\CalendarizeNews\Register::getConfiguration());
 
 $extensionConfiguration = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['calendarize_news']);

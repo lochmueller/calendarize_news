@@ -55,9 +55,16 @@ class IndexResult extends QueryResult
             $newsIds[] = -1;
 
             $database = $this->getDatabaseConnection();
-            $this->indexResult = $database->exec_SELECTgetRows('*', IndexerService::TABLE_NAME,
-                'foreign_table = "tx_news_domain_model_news" AND foreign_uid IN (' . implode(',',
-                    $newsIds) . ') AND start_date > ' . time(), '', 'start_date ASC');
+            $this->indexResult = $database->exec_SELECTgetRows(
+                '*',
+                IndexerService::TABLE_NAME,
+                'foreign_table = "tx_news_domain_model_news" AND foreign_uid IN (' . implode(
+                    ',',
+                    $newsIds
+                ) . ') AND start_date > ' . time(),
+                '',
+                'start_date ASC'
+            );
         }
     }
 

@@ -26,13 +26,14 @@ class IndexQuery extends Query
     public function execute($returnRawQueryResult = false)
     {
         $querySettings = $this->getQuerySettings();
-        $deprecatedRawResult = method_exists($querySettings,
-                'getReturnRawQueryResult') && $querySettings->getReturnRawQueryResult() === true;
+        $deprecatedRawResult = method_exists(
+            $querySettings,
+            'getReturnRawQueryResult'
+        ) && $querySettings->getReturnRawQueryResult() === true;
         if ($returnRawQueryResult === true || $deprecatedRawResult) {
             return $this->persistenceManager->getObjectDataByQuery($this);
         } else {
             return $this->objectManager->get('HDNET\\CalendarizeNews\\Persistence\\IndexResult', $this);
         }
     }
-
 }
