@@ -36,7 +36,7 @@
   ],
   "require": {
     "php": ">=5.5.0",
-    "typo3/cms-core": "~6.2.0||~7.6.0||~8.1.0||dev-master",
+    "typo3/cms-core": "~7.6.0||~8.1.0||dev-master",
     "typo3/cms": "^7.6.0",
     "typo3-ter/autoloader": "~2.1.0",
     "typo3-ter/calendarize": "~2.2.0",
