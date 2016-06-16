@@ -14,6 +14,12 @@
       "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
     }
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.typo3.org/"
+    }
+  ],
   "keywords": [
     "TYPO3 CMS",
     "Calendarize",
@@ -31,7 +37,10 @@
   "require": {
     "php": ">=5.5.0",
     "typo3/cms-core": "~6.2.0||~7.6.0||~8.1.0||dev-master",
-    "typo3/cms": "^7.6.0"
+    "typo3/cms": "^7.6.0",
+    "typo3-ter/autoloader": "~2.1.0",
+    "typo3-ter/calendarize": "~2.2.0",
+    "typo3-ter/news": "~4.0.0"
   },
   "replace": {
     "calendarize_news": "self.version",
