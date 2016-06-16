@@ -58,7 +58,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      *
      * @return object
      */
-    function objectToObject($instance, $className)
+    public function objectToObject($instance, $className)
     {
         return unserialize(sprintf(
             'O:%d:"%s"%s',
