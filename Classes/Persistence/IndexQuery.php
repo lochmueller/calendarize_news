@@ -33,7 +33,7 @@ class IndexQuery extends Query
         if ($returnRawQueryResult === true || $deprecatedRawResult) {
             return $this->persistenceManager->getObjectDataByQuery($this);
         } else {
-            return $this->objectManager->get('HDNET\\CalendarizeNews\\Persistence\\IndexResult', $this);
+            return $this->objectManager->get(\HDNET\CalendarizeNews\Persistence\IndexResult::class, $this);
         }
     }
 }

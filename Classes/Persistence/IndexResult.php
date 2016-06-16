@@ -78,10 +78,10 @@ class IndexResult extends QueryResult
         if (!is_array($this->queryResult)) {
             $this->initializeIndex();
             /** @var NewsOverwrite $overwriteService */
-            $overwriteService = HelperUtility::create('HDNET\\CalendarizeNews\\Service\\NewsOverwrite');
+            $overwriteService = HelperUtility::create(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
 
             /** @var NewsRepository $newsRepository */
-            $newsRepository = HelperUtility::create('GeorgRinger\\News\\Domain\\Repository\\NewsRepository');
+            $newsRepository = HelperUtility::create(\GeorgRinger\News\Domain\Repository\NewsRepository::class);
             $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
             $this->queryResult = [];
             foreach ($selection as $item) {

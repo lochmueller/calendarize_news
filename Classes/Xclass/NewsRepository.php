@@ -46,7 +46,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
             return $return;
         }
         $query = $return->getQuery();
-        $query = $this->objectToObject($query, 'HDNET\\CalendarizeNews\\Persistence\\IndexQuery');
+        $query = $this->objectToObject($query, \HDNET\CalendarizeNews\Persistence\IndexQuery::class);
         return $query->execute();
     }
 

@@ -22,11 +22,11 @@ if (!defined('TYPO3_MODE')) {
 $extensionConfiguration = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['calendarize_news']);
 if (isset($extensionConfiguration['replaceNewsRepositoryByIndexSelection']) && (bool)$extensionConfiguration['replaceNewsRepositoryByIndexSelection']) {
     $xclasses = [
-        'NewsController'     => 'GeorgRinger\\News\\Controller\\NewsController',
-        'NewsRepository'     => 'GeorgRinger\\News\\Domain\\Repository\\NewsRepository',
-        'NewsLinkViewHelper' => 'GeorgRinger\\News\\ViewHelpers\\LinkViewHelper',
+        \HDNET\CalendarizeNews\Xclass\NewsController::class     => \GeorgRinger\News\Controller\NewsController::class,
+        \HDNET\CalendarizeNews\Xclass\NewsRepository::class     => \GeorgRinger\News\Domain\Repository\NewsRepository::class,
+        \HDNET\CalendarizeNews\Xclass\NewsLinkViewHelper::class => \GeorgRinger\News\ViewHelpers\LinkViewHelper::class,
     ];
     foreach ($xclasses as $key => $value) {
-        \HDNET\Autoloader\Utility\ExtendedUtility::addXclass($value, 'HDNET\\CalendarizeNews\\Xclass\\' . $key);
+        \HDNET\Autoloader\Utility\ExtendedUtility::addXclass($value, $key);
     }
 }

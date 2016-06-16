@@ -35,7 +35,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
 
         if ($index !== null) {
             /** @var NewsOverwrite $overwriteService */
-            $overwriteService = HelperUtility::create('HDNET\\CalendarizeNews\\Service\\NewsOverwrite');
+            $overwriteService = HelperUtility::create(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
             $overwriteService->overWriteNewsPropertiesByIndexObject($news, $index);
         }
     }
