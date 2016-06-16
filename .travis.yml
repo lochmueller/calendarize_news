@@ -17,6 +17,7 @@ matrix:
       env: TYPO3_VERSION=dev-master
   allow_failures:
     - env: TYPO3_VERSION=dev-master
+    - env: TYPO3_VERSION=^8.1.0
 
 sudo: false
 cache:
