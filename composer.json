@@ -37,10 +37,9 @@
   "require": {
     "php": ">=5.5.0",
     "typo3/cms-core": "~7.6.0||~8.1.0||dev-master",
-    "typo3/cms": "^7.6.0",
-    "typo3-ter/autoloader": "~2.1.0",
-    "typo3-ter/calendarize": "~2.2.0",
-    "typo3-ter/news": "~4.0.0"
+    "lochmueller/autoloader": "~2.1.5",
+    "lochmueller/calendarize": "~2.4.1",
+    "georgringer/news": "~5.2.0"
   },
   "replace": {
     "calendarize_news": "self.version",
