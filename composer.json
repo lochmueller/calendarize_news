@@ -35,11 +35,11 @@
     }
   ],
   "require": {
-    "php": ">=5.5.0",
-    "typo3/cms-core": "~7.6.0||~8.1.0||dev-master",
-    "lochmueller/autoloader": "~2.1.5",
-    "lochmueller/calendarize": "~2.4.1",
-    "georgringer/news": "~5.2.0"
+    "php": ">=7.0.0",
+    "typo3/cms-core": "^7.6.13||^8.7.1",
+    "lochmueller/autoloader": "~3.1.0",
+    "lochmueller/calendarize": "~3.1.1",
+    "georgringer/news": "~6.0.0"
   },
   "replace": {
     "calendarize_news": "self.version",
