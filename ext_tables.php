@@ -14,4 +14,4 @@ if (!defined('TYPO3_MODE')) {
 \HDNET\Autoloader\Loader::extTables('HDNET', 'calendarize_news', \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration());
 \HDNET\Calendarize\Register::extTables(\HDNET\CalendarizeNews\Register::getConfiguration());
 
-$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] = 'tstamp,datetime,crdate,title,calendarize';
+$GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] .= ',calendarize';
