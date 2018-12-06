@@ -10,7 +10,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title'            => 'Calendarize for News',
-    'description'      => 'Add Event options to the news extension',
+    'description'      => 'Add Event options to the news extension.',
     'category'         => 'fe',
     'version'          => '4.0.0',
     'state'            => 'stable',
