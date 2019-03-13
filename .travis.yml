@@ -24,18 +24,11 @@ before_script:
   - composer require typo3/cms=$TYPO3_VERSION --ignore-platform-reqs
   - export TYPO3_PATH_WEB="$PWD/.Build/Web"
 
-#script:
-#- |
-#  echo; echo "Running unit tests";
-#  if [[ "$COVERAGE" == "1" ]]; then
-#    .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml --coverage-clover=.Build/unittest-coverage.clover Tests/Unit/ || true
-#  else
-#    .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/ || true
-#  fi;
-#- |
-#  echo; echo "Executing PHP mess detector"; .Build/bin/phpmd Classes/ text cleancode,codesize,controversial,design,naming || true
-#- |
-#  echo; echo "Executing PHP code sniffer"; .Build/bin/phpcs --runtime-set ignore_warnings_on_exit true --standard=PSR2 Classes/ || true
+script:
+- |
+  echo; echo "Executing PHP mess detector"; .Build/bin/phpmd Classes/ text cleancode,codesize,controversial,design,naming || true
+- |
+  echo; echo "Executing PHP code sniffer"; .Build/bin/phpcs --runtime-set ignore_warnings_on_exit true --standard=PSR2 Classes/ || true
 
 after_script:
 - |
@@ -50,9 +43,3 @@ after_script:
       .Build/bin/upload . "$TYPO3_ORG_USERNAME" "$TYPO3_ORG_PASSWORD" "$TAG_MESSAGE"
     fi;
   fi;
-- |
-  if [[ "$COVERAGE" == "1" ]]; then
-    echo; echo "Uploading code coverage results";
-    .Build/bin/ocular code-coverage:upload --format=php-clover .Build/unittest-coverage.clover
-  fi
-
