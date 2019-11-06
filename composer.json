@@ -1,72 +1,70 @@
 {
-  "name": "lochmueller/calendarize-news",
-  "version": "2.0.0",
-  "type": "typo3-cms-extension",
-  "description": "Add Event options to the news extension",
-  "autoload": {
-    "psr-4": {
-      "HDNET\\CalendarizeNews\\": "Classes/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "HDNET\\CalendarizeNews\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
-    }
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://composer.typo3.org/"
-    }
-  ],
-  "keywords": [
-    "TYPO3 CMS",
-    "Calendarize",
-    "News",
-    "Extbase"
-  ],
-  "authors": [
-    {
-      "name": "Tim Lochmüller",
-      "email": "webmaster@fruit-lab.de",
-      "role": "Developer",
-      "homepage": "https://github.com/lochmueller"
-    }
-  ],
-  "require": {
-    "php": ">=7.0.0",
-    "typo3/cms-core": "~8.7||~9.5",
-    "lochmueller/calendarize": ">4.0.0",
-    "lochmueller/autoloader": ">4.0.0",
-    "georgringer/news": "~7.0"
-  },
-  "replace": {
-    "calendarize_news": "self.version",
-    "typo3-ter/calendarize-news": "self.version"
-  },
-  "homepage": "https://github.com/lochmueller/calendarize_news",
-  "license": "GPL-2.0+",
-  "support": {
-    "issues": "https://github.com/lochmueller/calendarize_news/issues"
-  },
-  "require-dev": {
-    "namelesscoder/typo3-repository-client": "1.2.0",
-    "phpunit/phpunit": "~4.8.0",
-    "squizlabs/php_codesniffer": "^2.6",
-    "phpmd/phpmd": "^2.4"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
-  },
-  "extra": {
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/Web",
-      "Package": {
-        "partOfMinimalUsableSystem": true
-      }
-    }
-  }
+	"name": "lochmueller/calendarize-news",
+	"type": "typo3-cms-extension",
+	"description": "Add Event options to the news extension",
+	"autoload": {
+		"psr-4": {
+			"HDNET\\CalendarizeNews\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"HDNET\\CalendarizeNews\\Tests\\": "Tests",
+			"TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+		}
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.typo3.org/"
+		}
+	],
+	"keywords": [
+		"TYPO3 CMS",
+		"Calendarize",
+		"News",
+		"Extbase"
+	],
+	"authors": [
+		{
+			"name": "Tim Lochmüller",
+			"email": "webmaster@fruit-lab.de",
+			"role": "Developer",
+			"homepage": "https://github.com/lochmueller"
+		}
+	],
+	"require": {
+		"php": ">=7.0.0",
+		"typo3/cms-core": "~8.7||~9.5",
+		"lochmueller/calendarize": ">4.0.0",
+		"lochmueller/autoloader": ">4.0.0",
+		"georgringer/news": "~7.0"
+	},
+	"replace": {
+		"typo3-ter/calendarize-news": "self.version"
+	},
+	"homepage": "https://github.com/lochmueller/calendarize_news",
+	"license": "GPL-2.0-or-later",
+	"support": {
+		"issues": "https://github.com/lochmueller/calendarize_news/issues"
+	},
+	"require-dev": {
+		"namelesscoder/typo3-repository-client": "1.2.0",
+		"phpunit/phpunit": "~4.8.0",
+		"squizlabs/php_codesniffer": "^2.6",
+		"phpmd/phpmd": "^2.4"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web",
+			"Package": {
+				"partOfMinimalUsableSystem": true
+			}
+		}
+	}
 }
