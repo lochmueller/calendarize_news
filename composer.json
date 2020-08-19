@@ -9,8 +9,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"HDNET\\CalendarizeNews\\Tests\\": "Tests",
-			"TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+			"HDNET\\CalendarizeNews\\Tests\\": "Tests"
 		}
 	},
 	"repositories": [
@@ -34,11 +33,11 @@
 		}
 	],
 	"require": {
-		"php": ">=7.0.0",
-		"typo3/cms-core": "~8.7||~9.5",
-		"lochmueller/calendarize": ">4.0.0",
-		"lochmueller/autoloader": ">6.0.0",
-		"georgringer/news": "~7.2"
+		"php": "^7.2||^7.3||^7.4",
+		"typo3/cms-core": "^10.4.6",
+		"lochmueller/calendarize": "^7.0",
+		"lochmueller/autoloader": "^7.0",
+		"georgringer/news": "^8.4"
 	},
 	"replace": {
 		"typo3-ter/calendarize-news": "self.version"

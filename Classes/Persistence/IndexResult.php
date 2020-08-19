@@ -55,6 +55,7 @@ class IndexResult extends QueryResult
             $newsIds[] = -1;
 
             $database = $this->getDatabaseConnection();
+            // @todo migrate
             $this->indexResult = $database->exec_SELECTgetRows(
                 '*',
                 IndexerService::TABLE_NAME,
@@ -78,9 +79,11 @@ class IndexResult extends QueryResult
         if (!is_array($this->queryResult)) {
             $this->initializeIndex();
             /** @var NewsOverwrite $overwriteService */
+            // @todo migrate
             $overwriteService = HelperUtility::create(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
 
             /** @var NewsRepository $newsRepository */
+            // @todo migrate
             $newsRepository = HelperUtility::create(\GeorgRinger\News\Domain\Repository\NewsRepository::class);
             $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
             $this->queryResult = [];
