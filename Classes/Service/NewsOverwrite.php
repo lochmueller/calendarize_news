@@ -26,7 +26,6 @@ class NewsOverwrite implements SingletonInterface
      */
     public function overWriteNewsPropertiesByIndexArray(News $news, array $index)
     {
-
         ObjectAccess::setProperty(
             $news,
             'datetime',
@@ -76,8 +75,7 @@ class NewsOverwrite implements SingletonInterface
      */
     protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp)
     {
-
-        $newDateTime = new \DateTime('@' . $dateTimestamp);
+        $newDateTime = new \DateTime($dateTimestamp);
         //Set the right timezone because the DB timestamp is UTC
         $newDateTime->setTimezone(new \DateTimeZone(date_default_timezone_get()));
         $timeToAdd = new \DateInterval('PT' . $timeTimestamp . 'S');
