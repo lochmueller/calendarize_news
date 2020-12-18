@@ -19,7 +19,10 @@ if (!defined('TYPO3_MODE')) {
 );
 \HDNET\Calendarize\Register::extLocalconf(\HDNET\CalendarizeNews\Register::getConfiguration());
 
-$extensionConfiguration = (array)unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['calendarize_news']);
+$extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
+)->get('calendarize_news');
+
 if (isset($extensionConfiguration['replaceNewsRepositoryByIndexSelection']) && (bool)$extensionConfiguration['replaceNewsRepositoryByIndexSelection']) {
     $xclasses = [
         \HDNET\CalendarizeNews\Xclass\NewsController::class     => \GeorgRinger\News\Controller\NewsController::class,
