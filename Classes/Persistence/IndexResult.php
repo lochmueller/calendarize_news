@@ -31,9 +31,30 @@ class IndexResult extends QueryResult
      * Inject Repository
      *
      * @var \HDNET\Calendarize\Domain\Repository\IndexRepository
-     * @inject
+     *
      */
     protected $indexRepository;
+
+    /**
+     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
+     */
+    protected $newsRepository;
+
+    /**
+     * @param \HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository
+     */
+    public function injectIndexRepository(\HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository): void
+    {
+        $this->indexRepository = $indexRepository;
+    }
+
+    /**
+     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
+     */
+    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository): void
+    {
+        $this->newsRepository = $newsRepository;
+    }
 
     /**
      * Loads the objects this QueryResult is supposed to hold
@@ -79,17 +100,11 @@ class IndexResult extends QueryResult
     {
         if (!is_array($this->queryResult)) {
             $this->initializeIndex();
-            /** @var NewsOverwrite $overwriteService */
-            // @todo migrate
-            $overwriteService = HelperUtility::create(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
-
-            /** @var NewsRepository $newsRepository */
-            // @todo migrate
-            $newsRepository = HelperUtility::create(\GeorgRinger\News\Domain\Repository\NewsRepository::class);
+            $overwriteService = GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
             $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
             $this->queryResult = [];
             foreach ($selection as $item) {
-                $news = $newsRepository->findByIdentifier((int)$item['foreign_uid']);
+                $news = $this->newsRepository->findByIdentifier((int)$item['foreign_uid']);
                 if (is_object($news)) {
                     $customNews = clone $news;
                     $overwriteService->overWriteNewsPropertiesByIndexArray($customNews, $item);
