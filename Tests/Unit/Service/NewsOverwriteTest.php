@@ -7,12 +7,8 @@ namespace HDNET\CalendarizeNews\Tests\Unit\Persistence;
 
 use GeorgRinger\News\Domain\Model\News;
 use HDNET\Calendarize\Domain\Model\Index;
-use HDNET\CalendarizeNews\Persistence\IndexQuery;
-use HDNET\CalendarizeNews\Persistence\IndexResult;
 use HDNET\CalendarizeNews\Service\NewsOverwrite;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * NewsOverwriteTest
