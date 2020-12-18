@@ -32,13 +32,13 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      * Returns the objects of this repository matching the demand.
      *
      * @param DemandInterface $demand
-     * @param boolean         $respectEnableFields
-     *
+     * @param boolean $respectEnableFields
+     * @param bool $disableLanguageOverlayMode
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findDemanded(DemandInterface $demand, $respectEnableFields = true)
+    public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
     {
-        $return = parent::findDemanded($demand, $respectEnableFields);
+        $return = parent::findDemanded($demand, $respectEnableFields, $disableLanguageOverlayMode);
         if (!($demand instanceof NewsDemand)) {
             return $return;
         }
