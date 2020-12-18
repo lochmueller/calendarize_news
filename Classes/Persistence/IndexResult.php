@@ -8,10 +8,9 @@
 namespace HDNET\CalendarizeNews\Persistence;
 
 use HDNET\Calendarize\Service\IndexerService;
-use HDNET\Calendarize\Utility\HelperUtility;
-use HDNET\CalendarizeNews\Service\NewsOverwrite;
-use HDNET\CalendarizeNews\Xclass\NewsRepository;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
+use HDNET\Calendarize\Utility\DateTimeUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
@@ -54,18 +53,20 @@ class IndexResult extends QueryResult
             }
             $newsIds[] = -1;
 
-            $database = $this->getDatabaseConnection();
-            // @todo migrate
-            $this->indexResult = $database->exec_SELECTgetRows(
-                '*',
-                IndexerService::TABLE_NAME,
-                'foreign_table = "tx_news_domain_model_news" AND foreign_uid IN (' . implode(
-                    ',',
-                    $newsIds
-                ) . ') AND start_date > ' . time(),
-                '',
-                'start_date ASC'
-            );
+            $q = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable(IndexerService::TABLE_NAME);
+            $this->indexResult = $q->select('*')
+                ->from(IndexerService::TABLE_NAME)
+                ->where(
+                    $q->expr()->andX(
+                        $q->expr()->gte('start_date', $q->createNamedParameter(DateTimeUtility::getNow()->format('Y-m-d'))),
+                        $q->expr()->eq('foreign_table', $q->createNamedParameter('tx_news_domain_model_news')),
+                        $q->expr()->in('foreign_uid', $newsIds),
+                    )
+                )
+                ->addOrderBy('start_date', 'ASC')
+                ->addOrderBy('start_time', 'ASC')
+                ->execute()
+                ->fetchAll();
         }
     }
 
@@ -129,13 +130,5 @@ class IndexResult extends QueryResult
             $this->numberOfResults = count($this->indexResult);
         }
         return $this->numberOfResults;
-    }
-
-    /**
-     * @return DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
     }
 }
