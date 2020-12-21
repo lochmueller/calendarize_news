@@ -7,7 +7,7 @@
 			<div class="media calendarize-item">
 				<f:for each="{news.images}" as="image" iteration="i">
 					<f:if condition="{i.isFirst}">
-						<n:link newsItem="{news}" class="pull-left">
+						<n:link newsItem="{news}" index="{index.uid}" class="pull-left">
 							<f:image src="{image.originalResource.publicUrl}" alt="" maxWidth="160" maxHeight="160" class="media-object img-rounded" />
 						</n:link>
 					</f:if>
@@ -15,7 +15,7 @@
 
 				<div class="media-body">
 					<h2>
-						<n:link newsItem="{news}">
+						<n:link newsItem="{news}" index="{index.uid}">
 							<f:render partial="{index.configuration.partialIdentifier}/Title" arguments="{index: index}" />
 						</n:link>
 					</h2>
@@ -29,7 +29,7 @@
 						</f:format.crop>
 					</p>
 
-					<n:link newsItem="{news}" class="btn btn-default btn-primary">
+					<n:link newsItem="{news}" index="{index.uid}" class="btn btn-default btn-primary">
 						More <span class="glyphicon glyphicon-arrow-right"></span>
 					</n:link>
 				</div>
