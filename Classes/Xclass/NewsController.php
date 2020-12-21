@@ -8,8 +8,9 @@
 namespace HDNET\CalendarizeNews\Xclass;
 
 use HDNET\Calendarize\Domain\Model\Index;
-use HDNET\Calendarize\Utility\HelperUtility;
 use HDNET\CalendarizeNews\Service\NewsOverwrite;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Property\PropertyMapper;
 
 /**
  * @todo General class information
@@ -17,26 +18,34 @@ use HDNET\CalendarizeNews\Service\NewsOverwrite;
  */
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
+    /**
+     * @var Index
+     */
+    protected $index;
+
+    public function initializeDetailAction()
+    {
+        if ($this->request->hasArgument('index')) {
+            $index = $this->request->getArgument('index');
+            $this->index = $this->objectManager->get(PropertyMapper::class)
+                ->convert($index, Index::class);
+        }
+    }
 
     /**
      * Single view of a news record
      *
      * @param \GeorgRinger\News\Domain\Model\News $news news item
-     * @param Index                               $index
-     * @param integer                             $currentPage current page for optional pagination
-     *
+     * @param int $currentPage current page for optional pagination
      */
-    public function detailAction(
-        \GeorgRinger\News\Domain\Model\News $news = null,
-        \HDNET\Calendarize\Domain\Model\Index $index = null,
-        $currentPage = 1
-    ) {
+    public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
+    {
         parent::detailAction($news, $currentPage);
 
-        if ($index !== null) {
+        if ($news !== null && $this->index !== null) {
             /** @var NewsOverwrite $overwriteService */
-            $overwriteService = HelperUtility::create(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
-            $overwriteService->overWriteNewsPropertiesByIndexObject($news, $index);
+            $overwriteService = GeneralUtility::makeInstance(NewsOverwrite::class);
+            $overwriteService->overWriteNewsPropertiesByIndexObject($news, $this->index);
         }
     }
 }

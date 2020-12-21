@@ -10,6 +10,7 @@ namespace HDNET\CalendarizeNews\Service;
 use GeorgRinger\News\Domain\Model\News;
 use HDNET\Autoloader\SingletonInterface;
 use HDNET\Calendarize\Domain\Model\Index;
+use HDNET\Calendarize\Utility\DateTimeUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
@@ -21,7 +22,7 @@ class NewsOverwrite implements SingletonInterface
 {
 
     /**
-     * @param News  $news
+     * @param News $news
      * @param array $index
      */
     public function overWriteNewsPropertiesByIndexArray(News $news, array $index)
@@ -45,20 +46,18 @@ class NewsOverwrite implements SingletonInterface
     }
 
     /**
-     * @param News  $news
+     * @param News $news
      * @param Index $index
      */
     public function overWriteNewsPropertiesByIndexObject(News $news, Index $index)
     {
         $array = [
-            'uid'        => $index->getUid(),
-            'start_date' => $index->getStartDate()
-                ->getTimestamp(),
-            'end_date'   => $index->getEndDate()
-                ->getTimestamp(),
+            'uid' => $index->getUid(),
+            'start_date' => $index->getStartDate()->getTimestamp(),
+            'end_date' => $index->getEndDate()->getTimestamp(),
             'start_time' => $index->isAllDay() ? 0 : $index->getStartTime(),
-            'end_time'   => $index->isAllDay() ? 0 : $index->getEndTime(),
-            'all_day'    => $index->isAllDay(),
+            'end_time' => $index->isAllDay() ? 0 : $index->getEndTime(),
+            'all_day' => $index->isAllDay(),
         ];
         $this->overWriteNewsPropertiesByIndexArray($news, $array);
     }
@@ -71,16 +70,12 @@ class NewsOverwrite implements SingletonInterface
      * @param int $dateTimestamp
      * @param int $timeTimestamp
      *
-     * @return /DateTime
+     * @return \DateTime
      */
     protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp)
     {
-        $newDateTime = new \DateTime($dateTimestamp);
-        //Set the right timezone because the DB timestamp is UTC
-        $newDateTime->setTimezone(new \DateTimeZone(date_default_timezone_get()));
-        $timeToAdd = new \DateInterval('PT' . $timeTimestamp . 'S');
-        $newDateTime->add($timeToAdd);
-
-        return $newDateTime;
+        $time = DateTimeUtility::normalizeDateTimeSingle($timeTimestamp);
+        $date = new \DateTime('@' . $dateTimestamp);
+        return \DateTime::createFromFormat('Y-m-d H:i', $date->format('Y-m-d') . ' ' . $time->format('H:i'));
     }
 }
