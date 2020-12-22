@@ -12,6 +12,7 @@ use HDNET\Autoloader\SingletonInterface;
 use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\Calendarize\Utility\DateTimeUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -75,7 +76,7 @@ class NewsOverwrite implements SingletonInterface
     protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp)
     {
         $time = DateTimeUtility::normalizeDateTimeSingle($timeTimestamp);
-        $date = new \DateTime('@' . $dateTimestamp);
+        $date = new \DateTime(MathUtility::canBeInterpretedAsInteger($dateTimestamp) ? '@' : '' . $dateTimestamp);
         return \DateTime::createFromFormat('Y-m-d H:i', $date->format('Y-m-d') . ' ' . $time->format('H:i'));
     }
 }
