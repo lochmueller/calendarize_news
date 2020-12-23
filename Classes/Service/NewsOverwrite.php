@@ -76,7 +76,7 @@ class NewsOverwrite implements SingletonInterface
     protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp)
     {
         $date = DateTimeUtility::normalizeDateTimeSingle($dateTimestamp);
-        $time = $timeTimestamp !== 0 ? DateTimeUtility::normalizeDateTimeSingle($timeTimestamp) : DateTimeUtility::resetTime();
+        $time = new \DateTime("@$timeTimestamp");
         return \DateTime::createFromFormat('Y-m-d H:i', $date->format('Y-m-d') . ' ' . $time->format('H:i'));
     }
 }
