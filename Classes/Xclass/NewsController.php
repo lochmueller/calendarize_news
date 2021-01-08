@@ -45,7 +45,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
         if ($news !== null && $this->index !== null) {
             /** @var NewsOverwrite $overwriteService */
             $overwriteService = GeneralUtility::makeInstance(NewsOverwrite::class);
-            $overwriteService->overWriteNewsPropertiesByIndexObject($news, $this->index);
+            $overwriteService->overWriteNewsPropertiesByIndex($news, $this->index);
         }
     }
 }

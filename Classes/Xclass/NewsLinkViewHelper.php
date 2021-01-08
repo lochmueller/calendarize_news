@@ -8,6 +8,7 @@
 namespace HDNET\CalendarizeNews\Xclass;
 
 use GeorgRinger\News\ViewHelpers\LinkViewHelper;
+use HDNET\Calendarize\Domain\Model\Index;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
@@ -31,9 +32,9 @@ class NewsLinkViewHelper extends LinkViewHelper
     public function render()
     {
         try {
-            $config = ObjectAccess::getProperty($this->arguments['newsItem'], 'sorting', true);
-            if (is_array($config)) {
-                $this->arguments['configuration']['additionalParams'] .= '&tx_news_pi1[index]=' . $config['uid'];
+            $index = ObjectAccess::getProperty($this->arguments['newsItem'], 'sorting', true);
+            if ($index instanceof Index) {
+                $this->arguments['configuration']['additionalParams'] .= '&tx_news_pi1[index]=' . $index->getUid();
             }
             if ($this->arguments['index'] > 0) {
                 $this->arguments['configuration']['additionalParams'] .= '&tx_news_pi1[index]=' . $this->arguments['index'];
