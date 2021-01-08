@@ -7,11 +7,12 @@
 
 namespace HDNET\CalendarizeNews\Persistence;
 
-use HDNET\Calendarize\Service\IndexerService;
+use GeorgRinger\News\Domain\Model\NewsDefault;
+use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\Calendarize\Utility\DateTimeUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * @todo General class information
@@ -74,20 +75,18 @@ class IndexResult extends QueryResult
             }
             $newsIds[] = -1;
 
-            $q = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable(IndexerService::TABLE_NAME);
-            $this->indexResult = $q->select('*')
-                ->from(IndexerService::TABLE_NAME)
-                ->where(
-                    $q->expr()->andX(
-                        $q->expr()->gte('start_date', $q->createNamedParameter(DateTimeUtility::getNow()->format('Y-m-d'))),
-                        $q->expr()->eq('foreign_table', $q->createNamedParameter('tx_news_domain_model_news')),
-                        $q->expr()->in('foreign_uid', $newsIds),
-                    )
-                )
-                ->addOrderBy('start_date', 'ASC')
-                ->addOrderBy('start_time', 'ASC')
-                ->execute()
-                ->fetchAll();
+            $query = $this->indexRepository->createQuery();
+            $query->setOrderings([
+                'startDate' => QueryInterface::ORDER_ASCENDING,
+                'startTime' => QueryInterface::ORDER_ASCENDING,
+            ]);
+            $this->indexResult = $query->matching(
+                $query->logicalAnd([
+                    $query->equals('foreignTable', 'tx_news_domain_model_news'),
+                    $query->in('foreignUid', $newsIds),
+                    $query->greaterThanOrEqual('startDate', DateTimeUtility::getNow()->format('Y-m-d'))
+                ])
+            )->execute()->toArray();
         }
     }
 
@@ -103,11 +102,13 @@ class IndexResult extends QueryResult
             $overwriteService = GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
             $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
             $this->queryResult = [];
+            /** @var Index $item */
             foreach ($selection as $item) {
-                $news = $this->newsRepository->findByIdentifier((int)$item['foreign_uid']);
+                /** @var NewsDefault $news */
+                $news = $this->newsRepository->findByIdentifier($item->getForeignUid());
                 if (is_object($news)) {
                     $customNews = clone $news;
-                    $overwriteService->overWriteNewsPropertiesByIndexArray($customNews, $item);
+                    $overwriteService->overWriteNewsPropertiesByIndex($customNews, $item);
                     $this->queryResult[] = $customNews;
                 }
             }

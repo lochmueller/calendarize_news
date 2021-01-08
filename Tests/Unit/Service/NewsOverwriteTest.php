@@ -30,7 +30,7 @@ class NewsOverwriteTest extends UnitTestCase
         $index->setEndDate($date);
 
         $news = new News();
-        $service->overWriteNewsPropertiesByIndexObject($news, $index);
+        $service->overWriteNewsPropertiesByIndex($news, $index);
         $this->assertSame(true, $news->getDatetime() == $date);
     }
 }

@@ -24,14 +24,15 @@ class NewsOverwrite implements SingletonInterface
 
     /**
      * @param News $news
-     * @param array $index
+     * @param Index $index
      */
-    public function overWriteNewsPropertiesByIndexArray(News $news, array $index)
+    public function overWriteNewsPropertiesByIndex(News $news, Index $index)
     {
         ObjectAccess::setProperty(
             $news,
             'datetime',
-            $this->getCombinedTimeAsDatetime($index['start_date'], $index['start_time'])
+            $index->getStartDateComplete(),
+            true
         );
         ObjectAccess::setProperty($news, 'sorting', $index, true);
         if (ExtensionManagementUtility::isLoaded('eventnews')) {
@@ -39,44 +40,11 @@ class NewsOverwrite implements SingletonInterface
             ObjectAccess::setProperty(
                 $news,
                 'eventEnd',
-                $this->getCombinedTimeAsDatetime($index['end_date'], $index['end_time']),
+                $index->getEndDateComplete(),
                 true
             );
-            ObjectAccess::setProperty($news, 'fullDay', (bool)$index['all_day'], true);
+            ObjectAccess::setProperty($news, 'fullDay', $index->isAllDay(), true);
         }
     }
 
-    /**
-     * @param News $news
-     * @param Index $index
-     */
-    public function overWriteNewsPropertiesByIndexObject(News $news, Index $index)
-    {
-        $array = [
-            'uid' => $index->getUid(),
-            'start_date' => $index->getStartDate()->getTimestamp(),
-            'end_date' => $index->getEndDate()->getTimestamp(),
-            'start_time' => $index->isAllDay() ? 0 : $index->getStartTime(),
-            'end_time' => $index->isAllDay() ? 0 : $index->getEndTime(),
-            'all_day' => $index->isAllDay(),
-        ];
-        $this->overWriteNewsPropertiesByIndexArray($news, $array);
-    }
-
-    /**
-     * Get combined time as datetime
-     *
-     * - combine both values
-     *
-     * @param int $dateTimestamp
-     * @param int $timeTimestamp
-     *
-     * @return \DateTime
-     */
-    protected function getCombinedTimeAsDatetime($dateTimestamp, $timeTimestamp)
-    {
-        $date = DateTimeUtility::normalizeDateTimeSingle($dateTimestamp);
-        $time = new \DateTime("@$timeTimestamp");
-        return \DateTime::createFromFormat('Y-m-d H:i', $date->format('Y-m-d') . ' ' . $time->format('H:i'));
-    }
 }
