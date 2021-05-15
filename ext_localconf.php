@@ -23,13 +23,13 @@ $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
 )->get('calendarize_news');
 
+$xclasses = [
+    \HDNET\CalendarizeNews\Xclass\NewsLinkViewHelper::class => \GeorgRinger\News\ViewHelpers\LinkViewHelper::class,
+];
 if (isset($extensionConfiguration['replaceNewsRepositoryByIndexSelection']) && (bool)$extensionConfiguration['replaceNewsRepositoryByIndexSelection']) {
-    $xclasses = [
-        \HDNET\CalendarizeNews\Xclass\NewsController::class     => \GeorgRinger\News\Controller\NewsController::class,
-        \HDNET\CalendarizeNews\Xclass\NewsRepository::class     => \GeorgRinger\News\Domain\Repository\NewsRepository::class,
-        \HDNET\CalendarizeNews\Xclass\NewsLinkViewHelper::class => \GeorgRinger\News\ViewHelpers\LinkViewHelper::class,
-    ];
-    foreach ($xclasses as $key => $value) {
-        \HDNET\Autoloader\Utility\ExtendedUtility::addXclass($value, $key);
-    }
+    $xclasses[\HDNET\CalendarizeNews\Xclass\NewsController::class] = \GeorgRinger\News\Controller\NewsController::class;
+    $xclasses[\HDNET\CalendarizeNews\Xclass\NewsRepository::class] = \GeorgRinger\News\Domain\Repository\NewsRepository::class;
+}
+foreach ($xclasses as $key => $value) {
+    \HDNET\Autoloader\Utility\ExtendedUtility::addXclass($value, $key);
 }
