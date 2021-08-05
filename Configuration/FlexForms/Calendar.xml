@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <sheets>
+        <pages>
+            <ROOT>
+                <el>
+                    <!-- PID month Page -->
+                    <settings.newsPid>
+                        <TCEforms>
+                            <label>News PID</label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                            </config>
+                        </TCEforms>
+                    </settings.newsPid>
+                </el>
+            </ROOT>
+        </pages>
+    </sheets>
+</T3DataStructure>

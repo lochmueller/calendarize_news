@@ -29,9 +29,18 @@
 						</f:format.crop>
 					</p>
 
-					<n:link newsItem="{news}" index="{index.uid}" class="btn btn-default btn-primary">
-						More <span class="glyphicon glyphicon-arrow-right"></span>
-					</n:link>
+					<f:if condition="{settings.newsPid}">
+						<f:then>
+							<n:link newsItem="{news}" index="{index.uid}" class="btn btn-default btn-primary" settings="{defaultDetailPid: settings.newsPid}">
+								More <span class="glyphicon glyphicon-arrow-right"></span>
+							</n:link>
+						</f:then>
+						<f:else>
+							<n:link newsItem="{news}" index="{index.uid}" class="btn btn-default btn-primary">
+								More <span class="glyphicon glyphicon-arrow-right"></span>
+							</n:link>
+						</f:else>
+					</f:if>
 				</div>
 			</div>
 		</div>

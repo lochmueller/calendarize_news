@@ -33,3 +33,5 @@ if (isset($extensionConfiguration['replaceNewsRepositoryByIndexSelection']) && (
 foreach ($xclasses as $key => $value) {
     \HDNET\Autoloader\Utility\ExtendedUtility::addXclass($value, $key);
 }
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][\HDNET\CalendarizeNews\Hooks\FlexFormHook::class] = \HDNET\CalendarizeNews\Hooks\FlexFormHook::class;
