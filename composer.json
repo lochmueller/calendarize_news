@@ -35,7 +35,7 @@
 	"require": {
 		"php": "^7.3||^7.4",
 		"typo3/cms-core": "^10.4",
-		"lochmueller/calendarize": "^10.0",
+		"lochmueller/calendarize": "^10.0||^11.0",
 		"lochmueller/autoloader": "^7.0",
 		"georgringer/news": "^8.5"
 	},
