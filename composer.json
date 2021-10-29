@@ -82,7 +82,7 @@
 		"tool:php-cs-fixer-check": [
 			"php-cs-fixer fix --config Resources/Private/Build/PhpCsFixer.php --dry-run"
 		],
-		"tool:phpunit": [
+		"todo-tool:phpunit": [
 			"phpunit --configuration=Tests/Unit/Build/UnitTests.xml"
 		],
 		"tool:phpunit:functional": [
