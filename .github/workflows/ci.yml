@@ -41,6 +41,9 @@ jobs:
       - name: Install the right version(s)
         run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-extbase:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" -W
 
+      - name: composer validate
+        run: composer validate
+
       - name: Run PHP CS Fixer checks
         run: composer run tool:php-cs-fixer-check
 
