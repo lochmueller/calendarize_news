@@ -38,11 +38,14 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
-      - name: Install the right version
-        run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" -W
+      - name: Install the right version(s)
+        run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-extbase:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" -W
 
       - name: Run PHP CS Fixer checks
         run: composer run tool:php-cs-fixer-check
+
+      - name: Run phpstan checks
+        run: composer run tool:phpstan
 
       #- name: Unit Tests with phpunit
       #  run: composer run tool:phpunit --
