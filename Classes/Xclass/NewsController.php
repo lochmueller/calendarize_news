@@ -34,8 +34,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     /**
      * Single view of a news record.
      *
-     * @param \GeorgRinger\News\Domain\Model\News $news        news item
-     * @param int                                 $currentPage current page for optional pagination
+     * @param \GeorgRinger\News\Domain\Model\News $news news item
+     * @param int $currentPage current page for optional pagination
+     *
+     * @return null|string
      */
     public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
     {
