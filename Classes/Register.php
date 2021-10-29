@@ -1,36 +1,33 @@
 <?php
 /**
- * Register options
+ * Register options.
  *
- * @package HDNET\CalendarizeNews
  * @author  Tim Lochmüller
  */
 
 namespace HDNET\CalendarizeNews;
 
 /**
- * Register options
+ * Register options.
  *
  * @author Tim Lochmüller
  */
-
 class Register
 {
-
     /**
-     * Get the autoloader configuration
+     * Get the autoloader configuration.
      *
      * @return array
      */
     public static function getAutoloaderConfiguration()
     {
         return [
-            'StaticTyposcript'
+            'StaticTyposcript',
         ];
     }
 
     /**
-     * Get the configuration
+     * Get the configuration.
      *
      * @return array
      */
@@ -38,11 +35,11 @@ class Register
     {
         return [
             'uniqueRegisterKey' => 'News',
-            'title'             => 'News Event',
-            'modelName'         => \GeorgRinger\News\Domain\Model\News::class,
+            'title' => 'News Event',
+            'modelName' => \GeorgRinger\News\Domain\Model\News::class,
             'partialIdentifier' => 'News',
-            'tableName'         => 'tx_news_domain_model_news',
-            'required'          => false,
+            'tableName' => 'tx_news_domain_model_news',
+            'required' => false,
         ];
     }
 }

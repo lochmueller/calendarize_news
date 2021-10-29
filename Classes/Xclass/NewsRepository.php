@@ -13,15 +13,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @todo General class information
- *
  */
 class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 {
-
     /**
      * Returns the class name of this class.
      *
-     * @return string Class name of the repository.
+     * @return string class name of the repository
      */
     protected function getRepositoryClassName()
     {
@@ -32,8 +30,9 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      * Returns the objects of this repository matching the demand.
      *
      * @param DemandInterface $demand
-     * @param boolean $respectEnableFields
-     * @param bool $disableLanguageOverlayMode
+     * @param bool            $respectEnableFields
+     * @param bool            $disableLanguageOverlayMode
+     *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findDemanded(DemandInterface $demand, $respectEnableFields = true, $disableLanguageOverlayMode = false)
@@ -47,11 +46,12 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         }
         $query = $return->getQuery();
         $query = $this->objectToObject($query, \HDNET\CalendarizeNews\Persistence\IndexQuery::class);
+
         return $query->execute();
     }
 
     /**
-     * Convert to another object (sub) type
+     * Convert to another object (sub) type.
      *
      * @param object $instance
      * @param string $className
@@ -62,7 +62,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
     {
         return unserialize(sprintf(
             'O:%d:"%s"%s',
-            strlen($className),
+            \strlen($className),
             $className,
             strstr(strstr(serialize($instance), '"'), ':')
         ));
