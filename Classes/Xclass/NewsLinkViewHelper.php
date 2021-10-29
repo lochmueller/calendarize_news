@@ -13,11 +13,9 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * @todo General class information
- *
  */
 class NewsLinkViewHelper extends LinkViewHelper
 {
-
     public function initializeArguments()
     {
         parent::initializeArguments();
@@ -25,7 +23,7 @@ class NewsLinkViewHelper extends LinkViewHelper
     }
 
     /**
-     * Render link to news item or internal/external pages
+     * Render link to news item or internal/external pages.
      *
      * @return string link
      */
@@ -41,6 +39,7 @@ class NewsLinkViewHelper extends LinkViewHelper
             }
         } catch (\Exception $ex) {
         }
+
         return parent::render();
     }
 }

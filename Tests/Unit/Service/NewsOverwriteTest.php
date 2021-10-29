@@ -1,6 +1,6 @@
 <?php
 /**
- * NewsOverwriteTest
+ * NewsOverwriteTest.
  */
 
 namespace HDNET\CalendarizeNews\Tests\Unit\Persistence;
@@ -11,14 +11,10 @@ use HDNET\CalendarizeNews\Service\NewsOverwrite;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
 
 /**
- * NewsOverwriteTest
+ * NewsOverwriteTest.
  */
 class NewsOverwriteTest extends UnitTestCase
 {
-
-    /**
-     * @test
-     */
     public function testOverWriteNewsPropertiesByIndexObject()
     {
         $service = new NewsOverwrite();
@@ -31,6 +27,6 @@ class NewsOverwriteTest extends UnitTestCase
 
         $news = new News();
         $service->overWriteNewsPropertiesByIndex($news, $index);
-        $this->assertSame(true, $news->getDatetime() == $date);
+        self::assertTrue($news->getDatetime() == $date);
     }
 }

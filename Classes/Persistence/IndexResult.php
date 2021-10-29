@@ -16,23 +16,20 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * @todo General class information
- *
  */
 class IndexResult extends QueryResult
 {
-
     /**
-     * The result of the index selection
+     * The result of the index selection.
      *
      * @var array
      */
     protected $indexResult;
 
     /**
-     * Inject Repository
+     * Inject Repository.
      *
      * @var \HDNET\Calendarize\Domain\Repository\IndexRepository
-     *
      */
     protected $indexRepository;
 
@@ -58,13 +55,11 @@ class IndexResult extends QueryResult
     }
 
     /**
-     * Loads the objects this QueryResult is supposed to hold
-     *
-     * @return void
+     * Loads the objects this QueryResult is supposed to hold.
      */
     protected function initializeIndex()
     {
-        if (!is_array($this->indexResult)) {
+        if (!\is_array($this->indexResult)) {
             $newsIds = [];
             $query = clone $this->query;
             $query->setLimit(99999999);
@@ -84,29 +79,27 @@ class IndexResult extends QueryResult
                 $query->logicalAnd([
                     $query->equals('foreignTable', 'tx_news_domain_model_news'),
                     $query->in('foreignUid', $newsIds),
-                    $query->greaterThanOrEqual('startDate', DateTimeUtility::getNow()->format('Y-m-d'))
+                    $query->greaterThanOrEqual('startDate', DateTimeUtility::getNow()->format('Y-m-d')),
                 ])
             )->execute()->toArray();
         }
     }
 
     /**
-     * Loads the objects this QueryResult is supposed to hold
-     *
-     * @return void
+     * Loads the objects this QueryResult is supposed to hold.
      */
     protected function initialize()
     {
-        if (!is_array($this->queryResult)) {
+        if (!\is_array($this->queryResult)) {
             $this->initializeIndex();
             $overwriteService = GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
-            $selection = array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
+            $selection = \array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
             $this->queryResult = [];
             /** @var Index $item */
             foreach ($selection as $item) {
                 /** @var NewsDefault $news */
                 $news = $this->newsRepository->findByIdentifier($item->getForeignUid());
-                if (is_object($news)) {
+                if (\is_object($news)) {
                     $customNews = clone $news;
                     $overwriteService->overWriteNewsPropertiesByIndex($customNews, $item);
                     $this->queryResult[] = $customNews;
@@ -116,9 +109,10 @@ class IndexResult extends QueryResult
     }
 
     /**
-     * Returns the first object in the result set
+     * Returns the first object in the result set.
      *
      * @return object
+     *
      * @api
      */
     public function getFirst()
@@ -127,24 +121,27 @@ class IndexResult extends QueryResult
         $queryResult = $this->queryResult;
         reset($queryResult);
         $firstResult = current($queryResult);
-        if ($firstResult === false) {
+        if (false === $firstResult) {
             $firstResult = null;
         }
+
         return $firstResult;
     }
 
     /**
-     * Returns the number of objects in the result
+     * Returns the number of objects in the result.
      *
-     * @return integer The number of matching objects
+     * @return int The number of matching objects
+     *
      * @api
      */
     public function count()
     {
-        if ($this->numberOfResults === null) {
+        if (null === $this->numberOfResults) {
             $this->initializeIndex();
-            $this->numberOfResults = count($this->indexResult);
+            $this->numberOfResults = \count($this->indexResult);
         }
+
         return $this->numberOfResults;
     }
 }

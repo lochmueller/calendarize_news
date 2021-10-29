@@ -10,20 +10,16 @@ namespace HDNET\CalendarizeNews\Service;
 use GeorgRinger\News\Domain\Model\News;
 use HDNET\Autoloader\SingletonInterface;
 use HDNET\Calendarize\Domain\Model\Index;
-use HDNET\Calendarize\Utility\DateTimeUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 /**
  * @todo General class information
- *
  */
 class NewsOverwrite implements SingletonInterface
 {
-
     /**
-     * @param News $news
+     * @param News  $news
      * @param Index $index
      */
     public function overWriteNewsPropertiesByIndex(News $news, Index $index)
@@ -46,5 +42,4 @@ class NewsOverwrite implements SingletonInterface
             ObjectAccess::setProperty($news, 'fullDay', $index->isAllDay(), true);
         }
     }
-
 }
