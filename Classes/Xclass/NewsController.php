@@ -48,6 +48,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $overwriteService = GeneralUtility::makeInstance(NewsOverwrite::class);
             $overwriteService->overWriteNewsPropertiesByIndex($news, $this->index);
         }
+
         return null;
     }
 }
