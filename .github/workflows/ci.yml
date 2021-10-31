@@ -7,6 +7,7 @@ jobs:
       matrix:
         php: ["7.3", "7.4"]
         typo3: ["10.4"]
+        news: ["8.5", "9.0"]
         exclude:
           # leave this in here for later when TYPO3 v11 and PHP 8 support is added
           - php: "8.0"
@@ -39,7 +40,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Install the right version(s)
-        run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-extbase:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" -W
+        run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-extbase:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" "georgringer/news:^${{ matrix.news }}" -W
 
       - name: composer validate
         run: composer validate

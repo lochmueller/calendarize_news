@@ -27,7 +27,7 @@ class NewsLinkViewHelper extends LinkViewHelper
      *
      * @return string link
      */
-    public function render()
+    public function render(): ?string
     {
         try {
             $index = ObjectAccess::getProperty($this->arguments['newsItem'], 'sorting', true);
