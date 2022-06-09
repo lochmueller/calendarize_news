@@ -1,5 +1,9 @@
 name: Testing calendarize_news
-on: [push, pull_request]
+on:
+  push
+  pull_request
+  schedule:
+    - cron: '10 3 * * *'
 jobs:
   build:
     strategy:
