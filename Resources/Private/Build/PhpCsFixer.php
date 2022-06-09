@@ -6,12 +6,12 @@ $baseDir = dirname(__DIR__, 3);
 
 require $baseDir . '/.Build/vendor/autoload.php';
 
-//$find = new \PhpCsFixer\Finder();
+// $find = new \PhpCsFixer\Finder();
 $finder = PhpCsFixer\Finder::create()
     ->in($baseDir . '/Classes')
     ->in($baseDir . '/Tests/Unit')
-    //->in($baseDir . '/Tests/Functional')
-    //->in($baseDir . '/Configuration/TCA')
+    // ->in($baseDir . '/Tests/Functional')
+    // ->in($baseDir . '/Configuration/TCA')
     ->in($baseDir . '/Resources/Private/Build');
 
 $config = new \PhpCsFixer\Config();
