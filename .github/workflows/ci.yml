@@ -1,7 +1,7 @@
 name: Testing calendarize_news
 on:
-  push
-  pull_request
+  push:
+  pull_request:
   schedule:
     - cron: '10 3 * * *'
 jobs:
