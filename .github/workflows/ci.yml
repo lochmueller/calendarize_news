@@ -6,6 +6,8 @@ on:
     - cron: '10 3 * * *'
 jobs:
   build:
+    # only run jobs via scheduled workflow in main repo, not in forks
+    if: (github.event_name == 'schedule' && github.repository == 'lochmueller/calendarize_news') || (github.event_name != 'schedule')
     strategy:
       fail-fast: false
       matrix:
