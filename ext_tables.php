@@ -7,6 +7,5 @@
  * @author     Tim Lochmüller
  */
 defined('TYPO3') or exit();
-\HDNET\Calendarize\Register::extTables(\HDNET\CalendarizeNews\Register::getConfiguration());
 
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] .= ',calendarize';
