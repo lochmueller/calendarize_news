@@ -7,8 +7,6 @@
  * @author     Tim Lochmüller
  */
 
-declare(strict_types=1);
-
 defined('TYPO3') or exit();
 
 \HDNET\Calendarize\Register::extLocalconf(\HDNET\CalendarizeNews\Register::getConfiguration());
@@ -30,4 +28,5 @@ foreach ($xclasses as $target => $source) {
     ];
 }
 
+// Deprecated: remove when dropping TYPO3 v11
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][\HDNET\CalendarizeNews\Hooks\FlexFormHook::class] = \HDNET\CalendarizeNews\Hooks\FlexFormHook::class;
