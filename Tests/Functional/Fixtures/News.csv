@@ -1,0 +1,8 @@
+"tx_news_domain_model_news"
+,"uid","pid","type","title","calendarize"
+,10,1,0,"NormalNews",
+,20,1,0,"WithCalendarizeConfiguration",21
+
+"tx_calendarize_domain_model_configuration"
+,"uid","pid","type","handling","start_date","all_day","t3ver_oid","t3ver_wsid","t3ver_state"
+,21,1,"time","include","2026-05-02",1,0,0,0
