@@ -15,18 +15,6 @@ namespace HDNET\CalendarizeNews;
 class Register
 {
     /**
-     * Get the autoloader configuration.
-     *
-     * @return array
-     */
-    public static function getAutoloaderConfiguration()
-    {
-        return [
-            'StaticTyposcript',
-        ];
-    }
-
-    /**
      * Get the configuration.
      *
      * @return array

@@ -8,8 +8,8 @@
 namespace HDNET\CalendarizeNews\Service;
 
 use GeorgRinger\News\Domain\Model\News;
-use HDNET\Autoloader\SingletonInterface;
 use HDNET\Calendarize\Domain\Model\Index;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 

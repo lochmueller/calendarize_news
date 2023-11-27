@@ -6,12 +6,7 @@
  * @package    Calendarize
  * @author     Tim Lochmüller
  */
-
-if (!defined('TYPO3_MODE')) {
-    die('Access denied.');
-}
-
-\HDNET\Autoloader\Loader::extTables('HDNET', 'calendarize_news', \HDNET\CalendarizeNews\Register::getAutoloaderConfiguration());
+defined('TYPO3') or exit();
 \HDNET\Calendarize\Register::extTables(\HDNET\CalendarizeNews\Register::getConfiguration());
 
 $GLOBALS['TYPO3_CONF_VARS']['EXT']['news']['orderByNews'] .= ',calendarize';
