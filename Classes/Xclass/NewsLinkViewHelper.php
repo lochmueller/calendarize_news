@@ -30,12 +30,14 @@ class NewsLinkViewHelper extends LinkViewHelper
     public function render(): ?string
     {
         try {
-            $index = ObjectAccess::getProperty($this->arguments['newsItem'], 'sorting', true);
+            $index = ObjectAccess::getProperty($this->arguments['newsItem'] ?? [], 'sorting');
             if ($index instanceof Index) {
                 $this->arguments['configuration']['additionalParams'] .= '&tx_news_pi1[index]=' . $index->getUid();
             }
             if ($this->arguments['index'] > 0) {
-                $this->arguments['configuration']['additionalParams'] .= '&tx_news_pi1[index]=' . $this->arguments['index'];
+                $this->arguments['configuration']['additionalParams'] =
+                    ($this->arguments['configuration']['additionalParams'] ?? '')
+                    . '&tx_news_pi1[index]=' . $this->arguments['index'];
             }
         } catch (\Exception $ex) {
         }

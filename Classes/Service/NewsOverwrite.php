@@ -28,18 +28,16 @@ class NewsOverwrite implements SingletonInterface
             $news,
             'datetime',
             $index->getStartDateComplete(),
-            true
         );
-        ObjectAccess::setProperty($news, 'sorting', $index, true);
+        ObjectAccess::setProperty($news, 'sorting', $index);
         if (ExtensionManagementUtility::isLoaded('eventnews')) {
-            ObjectAccess::setProperty($news, 'isEvent', true, true);
+            ObjectAccess::setProperty($news, 'isEvent', true);
             ObjectAccess::setProperty(
                 $news,
                 'eventEnd',
                 $index->getEndDateComplete(),
-                true
             );
-            ObjectAccess::setProperty($news, 'fullDay', $index->isAllDay(), true);
+            ObjectAccess::setProperty($news, 'fullDay', $index->isAllDay());
         }
     }
 }
