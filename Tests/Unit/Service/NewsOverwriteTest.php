@@ -8,7 +8,7 @@ namespace HDNET\CalendarizeNews\Tests\Unit\Persistence;
 use GeorgRinger\News\Domain\Model\News;
 use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\CalendarizeNews\Service\NewsOverwrite;
-use TYPO3\CMS\Core\Tests\UnitTestCase;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * NewsOverwriteTest.
@@ -21,12 +21,12 @@ class NewsOverwriteTest extends UnitTestCase
 
         $index = new Index();
         $index->setAllDay(true);
-        $date = new \DateTime();
+        $date = (new \DateTime())->setTime(0, 0);
         $index->setStartDate($date);
         $index->setEndDate($date);
 
         $news = new News();
         $service->overWriteNewsPropertiesByIndex($news, $index);
-        self::assertTrue($news->getDatetime() == $date);
+        self::assertEquals($date, $news->getDatetime());
     }
 }
