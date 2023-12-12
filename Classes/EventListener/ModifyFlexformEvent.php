@@ -21,7 +21,7 @@ final class ModifyFlexformEvent
         if (
             'tca' === ($identifier['type'] ?? '')
             && 'tt_content' === ($identifier['tableName'] ?? '')
-            && 'calendarize_list,list' === ($identifier['dataStructureKey'] ?? '')
+            && str_starts_with($identifier['dataStructureKey'] ?? '', 'calendarize_')
         ) {
             $file = GeneralUtility::getFileAbsFileName('EXT:calendarize_news/Configuration/FlexForms/Calendar.xml');
             $content = file_get_contents($file);
