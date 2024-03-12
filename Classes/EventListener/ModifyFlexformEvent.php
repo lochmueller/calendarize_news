@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class ModifyFlexformEvent
 {
-    public function __invoke(AfterFlexFormDataStructureParsedEvent $event):void
+    public function __invoke(AfterFlexFormDataStructureParsedEvent $event): void
     {
         $identifier = $event->getIdentifier();
         if (

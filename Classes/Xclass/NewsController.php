@@ -38,7 +38,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      * @param \GeorgRinger\News\Domain\Model\News $news        news item
      * @param int                                 $currentPage current page for optional pagination
      */
-    public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1): ResponseInterface
+    public function detailAction(?\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1): ResponseInterface
     {
         $result = parent::detailAction($news, $currentPage);
 

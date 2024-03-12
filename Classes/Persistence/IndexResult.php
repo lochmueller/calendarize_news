@@ -30,7 +30,6 @@ class IndexResult extends QueryResult
 
     protected \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository;
 
-
     public function injectIndexRepository(\HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository): void
     {
         $this->indexRepository = $indexRepository;

@@ -27,6 +27,6 @@ class IndexQuery extends Query
             return $this->persistenceManager->getObjectDataByQuery($this);
         }
 
-        return GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Persistence\IndexResult::class, $this);
+        return GeneralUtility::makeInstance(IndexResult::class, $this);
     }
 }

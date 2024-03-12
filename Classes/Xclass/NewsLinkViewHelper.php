@@ -6,7 +6,6 @@ use GeorgRinger\News\ViewHelpers\LinkViewHelper;
 use HDNET\Calendarize\Domain\Model\Index;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
-
 class NewsLinkViewHelper extends LinkViewHelper
 {
     public function initializeArguments()

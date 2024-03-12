@@ -9,7 +9,6 @@ namespace HDNET\CalendarizeNews\Xclass;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @todo General class information
@@ -53,7 +52,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
     /**
      * Convert to another object (sub) type.
      */
-    public function objectToObject(object $instance, string $className):object
+    public function objectToObject(object $instance, string $className): object
     {
         return unserialize(sprintf(
             'O:%d:"%s"%s',
