@@ -7,6 +7,9 @@ namespace HDNET\CalendarizeNews\Hooks;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * @deprecated Remove when dropping TYPO3 v11
+ */
 class FlexFormHook
 {
     /**

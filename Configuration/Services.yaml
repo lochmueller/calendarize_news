@@ -1,0 +1,18 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: True
+    public: false
+
+  HDNET\CalendarizeNews\:
+    resource: '../Classes/*'
+    # TODO: see https://github.com/lochmueller/calendarize_news/issues/46
+    exclude:
+      - '../Classes/Persistence'
+      - '../Classes/Xclass/{NewsRepository,NewsController.php}'
+
+  HDNET\CalendarizeNews\EventListener\ModifyFlexformEvent:
+    tags:
+      - name: event.listener
+        identifier: 'calendarize-news/modify-flexform'
+        event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent

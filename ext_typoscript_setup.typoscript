@@ -1,3 +1,4 @@
+# Deprecated: remove when dropping TYPO3 v11
 module.tx_calendarize.view {
     partialRootPaths {
         200 = EXT:calendarize_news/Resources/Private/Partials/
