@@ -26,29 +26,16 @@ class IndexResult extends QueryResult
      */
     protected $indexResult;
 
-    /**
-     * Inject Repository.
-     *
-     * @var \HDNET\Calendarize\Domain\Repository\IndexRepository
-     */
-    protected $indexRepository;
+    protected \HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository;
 
-    /**
-     * @var \GeorgRinger\News\Domain\Repository\NewsRepository
-     */
-    protected $newsRepository;
+    protected \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository;
 
-    /**
-     * @param \HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository
-     */
+
     public function injectIndexRepository(\HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository): void
     {
         $this->indexRepository = $indexRepository;
     }
 
-    /**
-     * @param \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository
-     */
     public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository): void
     {
         $this->newsRepository = $newsRepository;
@@ -93,7 +80,7 @@ class IndexResult extends QueryResult
         if (!\is_array($this->queryResult)) {
             $this->initializeIndex();
             $overwriteService = GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Service\NewsOverwrite::class);
-            $selection = \array_slice($this->indexResult, (int)$this->query->getOffset(), (int)$this->query->getLimit());
+            $selection = \array_slice($this->indexResult, $this->query->getOffset(), $this->query->getLimit());
             $this->queryResult = [];
             /** @var Index $item */
             foreach ($selection as $item) {
@@ -135,7 +122,7 @@ class IndexResult extends QueryResult
      *
      * @api
      */
-    public function count()
+    public function count(): int
     {
         if (null === $this->numberOfResults) {
             $this->initializeIndex();

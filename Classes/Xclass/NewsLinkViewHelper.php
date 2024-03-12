@@ -1,9 +1,4 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Xclass;
 
@@ -11,9 +6,7 @@ use GeorgRinger\News\ViewHelpers\LinkViewHelper;
 use HDNET\Calendarize\Domain\Model\Index;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
-/**
- * @todo General class information
- */
+
 class NewsLinkViewHelper extends LinkViewHelper
 {
     public function initializeArguments()

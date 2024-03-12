@@ -9,6 +9,7 @@ namespace HDNET\CalendarizeNews\Xclass;
 
 use HDNET\Calendarize\Domain\Model\Index;
 use HDNET\CalendarizeNews\Service\NewsOverwrite;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Property\PropertyMapper;
 
@@ -26,7 +27,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
     {
         if ($this->request->hasArgument('index')) {
             $index = $this->request->getArgument('index');
-            $this->index = $this->objectManager->get(PropertyMapper::class)
+            $this->index = GeneralUtility::makeInstance(PropertyMapper::class)
                 ->convert($index, Index::class);
         }
     }
@@ -36,12 +37,10 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      *
      * @param \GeorgRinger\News\Domain\Model\News $news        news item
      * @param int                                 $currentPage current page for optional pagination
-     *
-     * @return string|null
      */
-    public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1)
+    public function detailAction(\GeorgRinger\News\Domain\Model\News $news = null, $currentPage = 1): ResponseInterface
     {
-        parent::detailAction($news, $currentPage);
+        $result = parent::detailAction($news, $currentPage);
 
         if (null !== $news && null !== $this->index) {
             /** @var NewsOverwrite $overwriteService */
@@ -49,6 +48,6 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
             $overwriteService->overWriteNewsPropertiesByIndex($news, $this->index);
         }
 
-        return null;
+        return $result;
     }
 }

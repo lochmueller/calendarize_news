@@ -41,7 +41,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
         if (!($demand instanceof NewsDemand)) {
             return $return;
         }
-        if (!GeneralUtility::isFirstPartOfStr($demand->getOrder(), 'calendarize')) {
+        if (!str_starts_with($demand->getOrder(), 'calendarize')) {
             return $return;
         }
         $query = $return->getQuery();
@@ -52,13 +52,8 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 
     /**
      * Convert to another object (sub) type.
-     *
-     * @param object $instance
-     * @param string $className
-     *
-     * @return object
      */
-    public function objectToObject($instance, $className)
+    public function objectToObject(object $instance, string $className):object
     {
         return unserialize(sprintf(
             'O:%d:"%s"%s',

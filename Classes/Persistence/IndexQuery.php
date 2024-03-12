@@ -1,17 +1,10 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Persistence;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 
-/**
- * @todo General class information
- */
 class IndexQuery extends Query
 {
     /**
@@ -34,6 +27,6 @@ class IndexQuery extends Query
             return $this->persistenceManager->getObjectDataByQuery($this);
         }
 
-        return $this->objectManager->get(\HDNET\CalendarizeNews\Persistence\IndexResult::class, $this);
+        return GeneralUtility::makeInstance(\HDNET\CalendarizeNews\Persistence\IndexResult::class, $this);
     }
 }
