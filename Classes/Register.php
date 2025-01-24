@@ -10,7 +10,7 @@ class Register
     /**
      * Get the configuration.
      */
-    public static function getConfiguration():array
+    public static function getConfiguration(): array
     {
         return [
             'uniqueRegisterKey' => 'News',

@@ -5,7 +5,6 @@ namespace HDNET\CalendarizeNews\Xclass;
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 
-
 class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 {
     /**
@@ -47,7 +46,7 @@ class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
      */
     public function objectToObject(object $instance, string $className): object
     {
-        return unserialize(sprintf(
+        return unserialize(\sprintf(
             'O:%d:"%s"%s',
             \strlen($className),
             $className,

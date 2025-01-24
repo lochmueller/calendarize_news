@@ -8,10 +8,8 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
-
 class NewsOverwrite implements SingletonInterface
 {
-
     public function overWriteNewsPropertiesByIndex(News $news, Index $index)
     {
         ObjectAccess::setProperty(
