@@ -27,6 +27,3 @@ foreach ($xclasses as $target => $source) {
         'className' => $target,
     ];
 }
-
-// Deprecated: remove when dropping TYPO3 v11
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS'][\TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools::class]['flexParsing'][\HDNET\CalendarizeNews\Hooks\FlexFormHook::class] = \HDNET\CalendarizeNews\Hooks\FlexFormHook::class;

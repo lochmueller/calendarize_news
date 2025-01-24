@@ -1,9 +1,4 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Service;
 
@@ -13,15 +8,10 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
-/**
- * @todo General class information
- */
+
 class NewsOverwrite implements SingletonInterface
 {
-    /**
-     * @param News  $news
-     * @param Index $index
-     */
+
     public function overWriteNewsPropertiesByIndex(News $news, Index $index)
     {
         ObjectAccess::setProperty(

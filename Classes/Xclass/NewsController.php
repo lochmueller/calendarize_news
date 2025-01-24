@@ -1,9 +1,4 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Xclass;
 
@@ -13,9 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Property\PropertyMapper;
 
-/**
- * @todo General class information
- */
 class NewsController extends \GeorgRinger\News\Controller\NewsController
 {
     /**

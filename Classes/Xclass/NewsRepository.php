@@ -1,18 +1,11 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Xclass;
 
 use GeorgRinger\News\Domain\Model\DemandInterface;
 use GeorgRinger\News\Domain\Model\Dto\NewsDemand;
 
-/**
- * @todo General class information
- */
+
 class NewsRepository extends \GeorgRinger\News\Domain\Repository\NewsRepository
 {
     /**

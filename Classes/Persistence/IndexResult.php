@@ -1,41 +1,34 @@
 <?php
-/**
- * @todo    General file information
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews\Persistence;
 
 use GeorgRinger\News\Domain\Model\NewsDefault;
+use GeorgRinger\News\Domain\Repository\NewsRepository;
 use HDNET\Calendarize\Domain\Model\Index;
+use HDNET\Calendarize\Domain\Repository\IndexRepository;
 use HDNET\Calendarize\Utility\DateTimeUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
-/**
- * @todo General class information
- */
+
 class IndexResult extends QueryResult
 {
     /**
      * The result of the index selection.
-     *
-     * @var array
      */
-    protected $indexResult;
+    protected ?array $indexResult = null;
 
-    protected \HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository;
+    protected IndexRepository $indexRepository;
 
-    protected \GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository;
+    protected NewsRepository $newsRepository;
 
-    public function injectIndexRepository(\HDNET\Calendarize\Domain\Repository\IndexRepository $indexRepository): void
+    public function injectIndexRepository(IndexRepository $indexRepository): void
     {
         $this->indexRepository = $indexRepository;
     }
 
-    public function injectNewsRepository(\GeorgRinger\News\Domain\Repository\NewsRepository $newsRepository): void
+    public function injectNewsRepository(NewsRepository $newsRepository): void
     {
         $this->newsRepository = $newsRepository;
     }
@@ -98,8 +91,6 @@ class IndexResult extends QueryResult
      * Returns the first object in the result set.
      *
      * @return object
-     *
-     * @api
      */
     public function getFirst()
     {
@@ -116,10 +107,6 @@ class IndexResult extends QueryResult
 
     /**
      * Returns the number of objects in the result.
-     *
-     * @return int The number of matching objects
-     *
-     * @api
      */
     public function count(): int
     {

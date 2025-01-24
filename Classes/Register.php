@@ -1,25 +1,16 @@
 <?php
-/**
- * Register options.
- *
- * @author  Tim Lochmüller
- */
 
 namespace HDNET\CalendarizeNews;
 
 /**
  * Register options.
- *
- * @author Tim Lochmüller
  */
 class Register
 {
     /**
      * Get the configuration.
-     *
-     * @return array
      */
-    public static function getConfiguration()
+    public static function getConfiguration():array
     {
         return [
             'uniqueRegisterKey' => 'News',
