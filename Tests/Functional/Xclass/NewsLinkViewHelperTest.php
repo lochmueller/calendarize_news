@@ -9,13 +9,16 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class NewsLinkViewHelperTest extends FunctionalTestCase
 {
-    public function __construct()
-    {
-        // Initialize inside constructor to support TYPO3 v10
-        $this->coreExtensionsToLoad = ['extbase', 'fluid'];
-        $this->testExtensionsToLoad = ['typo3conf/ext/news', 'typo3conf/ext/calendarize_news'];
-        parent::__construct();
-    }
+    protected array $coreExtensionsToLoad = [
+        'extbase',
+        'fluid',
+    ];
+
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/news',
+        'typo3conf/ext/calendarize',
+        'typo3conf/ext/calendarize_news',
+    ];
 
     public function testViewHelperRender(): void
     {
