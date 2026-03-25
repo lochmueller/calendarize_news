@@ -37,7 +37,7 @@ class NewsIndexTest extends FunctionalTestCase
         $rows = $queryBuilder
             ->select('*')
             ->from('tx_calendarize_domain_model_index')
-            ->execute()->fetchAllAssociative();
+            ->executeQuery()->fetchAllAssociative();
 
         self::assertCount(1, $rows);
         self::assertEquals(20, $rows[0]['foreign_uid']);
