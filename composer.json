@@ -51,9 +51,9 @@
 		"squizlabs/php_codesniffer": "^2.6",
 		"phpmd/phpmd": "^2.4",
 		"friendsofphp/php-cs-fixer": "^3.0",
-		"phpunit/phpunit": "^9.5",
+		"phpunit/phpunit": "^9.5||^10.1",
 		"phpstan/phpstan": "^0.12.82",
-		"typo3/testing-framework": "^6.0.0||^7.0.4"
+		"typo3/testing-framework": "^6.0.0||^7.0.4||^8.3.1"
 	},
 	"config": {
 		"vendor-dir": ".Build/vendor",
