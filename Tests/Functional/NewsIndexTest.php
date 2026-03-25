@@ -12,16 +12,16 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class NewsIndexTest extends FunctionalTestCase
 {
-    public function __construct()
-    {
-        // Initialize inside constructor to support TYPO3 v10
-        $this->coreExtensionsToLoad = ['extbase', 'fluid'];
-        $this->testExtensionsToLoad = ['typo3conf/ext/news', 'typo3conf/ext/calendarize', 'typo3conf/ext/calendarize_news'];
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 12) {
-            array_splice($this->testExtensionsToLoad, 1, 0, 'typo3conf/ext/autoloader');
-        }
-        parent::__construct();
-    }
+    protected array $coreExtensionsToLoad = [
+        'extbase',
+        'fluid',
+    ];
+
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/news',
+        'typo3conf/ext/calendarize',
+        'typo3conf/ext/calendarize_news',
+    ];
 
     public function testNewsIndexing(): void
     {
