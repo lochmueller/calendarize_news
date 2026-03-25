@@ -8,7 +8,7 @@ use TYPO3\CMS\Extbase\Reflection\ObjectAccess;
 
 class NewsLinkViewHelper extends LinkViewHelper
 {
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
         $this->registerArgument('index', 'int', 'index configuration', false, 0);
@@ -19,7 +19,7 @@ class NewsLinkViewHelper extends LinkViewHelper
      *
      * @return string link
      */
-    public function render(): ?string
+    public function render(): string
     {
         try {
             $index = ObjectAccess::getProperty($this->arguments['newsItem'] ?? [], 'sorting');
@@ -34,6 +34,6 @@ class NewsLinkViewHelper extends LinkViewHelper
         } catch (\Exception $ex) {
         }
 
-        return parent::render();
+        return parent::render() ?: '';
     }
 }
