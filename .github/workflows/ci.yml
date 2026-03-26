@@ -2,11 +2,8 @@ name: Testing calendarize_news
 on:
   push:
   pull_request:
-#  schedule:
-#    - cron: '10 3 * * 1'
 jobs:
   build:
-    # only run jobs via scheduled workflow in main repo, not in forks
     if: (github.event_name == 'schedule' && github.repository == 'lochmueller/calendarize_news') || (github.event_name != 'schedule')
     strategy:
       fail-fast: false
@@ -51,24 +48,15 @@ jobs:
       - name: Install the right version(s)
         run: composer require "typo3/cms-core:^${{ matrix.typo3 }}" "typo3/cms-extbase:^${{ matrix.typo3 }}" "typo3/cms-workspaces:^${{ matrix.typo3 }}" "georgringer/news:^${{ matrix.news }}" -W
 
-      - name: composer validate
-        run: composer validate
-
       - name: Run PHP CS Fixer checks
-        run: composer run tool:php-cs-fixer-check
-
-      #- name: Run phpstan checks
-      #  run: composer run tool:phpstan
-      #  continue-on-error: true
+        run: composer code-check
 
       - name: Unit Tests with phpunit
-        run: composer run tool:phpunit --
+        run: composer code-test
 
-      # start db
       - name: Start MySQL
         run: sudo /etc/init.d/mysql start
 
-      # functional tests
       - name: Functional Tests
         run: |
           export typo3DatabaseName="typo3";
@@ -76,6 +64,3 @@ jobs:
           export typo3DatabaseUsername="root";
           export typo3DatabasePassword="root";
           composer run tool:phpunit:functional --
-
-      #- name: Run DepTrac
-      #  run: composer run tool:deptrac

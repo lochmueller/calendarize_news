@@ -1,23 +1,8 @@
 {
 	"name": "lochmueller/calendarize-news",
-	"type": "typo3-cms-extension",
 	"description": "Add Event options to the news extension",
-	"autoload": {
-		"psr-4": {
-			"HDNET\\CalendarizeNews\\": "Classes/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"HDNET\\CalendarizeNews\\Tests\\": "Tests"
-		}
-	},
-	"repositories": [
-		{
-			"type": "composer",
-			"url": "https://composer.typo3.org/"
-		}
-	],
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
 	"keywords": [
 		"TYPO3 CMS",
 		"Calendarize",
@@ -28,55 +13,77 @@
 		{
 			"name": "Tim Lochmüller",
 			"email": "webmaster@fruit-lab.de",
-			"role": "Developer",
-			"homepage": "https://github.com/lochmueller"
+			"homepage": "https://github.com/lochmueller",
+			"role": "Developer"
 		}
 	],
+	"homepage": "https://github.com/lochmueller/calendarize_news",
+	"support": {
+		"issues": "https://github.com/lochmueller/calendarize_news/issues"
+	},
 	"require": {
 		"php": "^8.2",
-		"typo3/cms-core": "^13.4",
-		"lochmueller/calendarize": "^13.0||^14.0",
-		"georgringer/news": "^12.0||^13.0||^14.0 "
+		"georgringer/news": "^12.0 || ^13.0 || ^14.0",
+		"lochmueller/calendarize": "^13.0 || ^14.0",
+		"typo3/cms-core": "^13.4"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^3.0",
+		"namelesscoder/typo3-repository-client": "1.2.0",
+		"phpstan/phpstan": "^0.12.82",
+		"squizlabs/php_codesniffer": "^2.6",
+		"typo3/testing-framework": "^8.3"
 	},
 	"replace": {
 		"typo3-ter/calendarize-news": "self.version"
 	},
-	"homepage": "https://github.com/lochmueller/calendarize_news",
-	"license": "GPL-2.0-or-later",
-	"support": {
-		"issues": "https://github.com/lochmueller/calendarize_news/issues"
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.typo3.org/"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"HDNET\\CalendarizeNews\\": "Classes/"
+		}
 	},
-	"require-dev": {
-		"namelesscoder/typo3-repository-client": "1.2.0",
-		"squizlabs/php_codesniffer": "^2.6",
-		"phpmd/phpmd": "^2.4",
-		"friendsofphp/php-cs-fixer": "^3.0",
-		"phpunit/phpunit": "^9.5||^10.1",
-		"phpstan/phpstan": "^0.12.82",
-		"typo3/testing-framework": "^8.3.1"
+	"autoload-dev": {
+		"psr-4": {
+			"HDNET\\CalendarizeNews\\Tests\\": "Tests"
+		}
 	},
 	"config": {
-		"vendor-dir": ".Build/vendor",
-		"bin-dir": ".Build/bin",
 		"allow-plugins": {
 			"typo3/class-alias-loader": true,
 			"typo3/cms-composer-installers": true
-		}
+		},
+		"bin-dir": ".Build/bin",
+		"vendor-dir": ".Build/vendor"
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "calendarize_news",
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
-			"web-dir": ".Build/Web",
 			"Package": {
 				"partOfMinimalUsableSystem": true
-			}
+			},
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"extension-key": "calendarize_news",
+			"web-dir": ".Build/Web"
 		}
 	},
 	"scripts": {
-		"code": [
-			"@tool:php-cs-fixer",
+		"post-autoload-dump": [
+			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+		],
+		"code-fix": [
+			"@tool:php-cs-fixer"
+		],
+		"code-check": [
+			"@tool:php-cs-fixer-check",
 			"@tool:phpstan"
+		],
+		"code-test": [
+			"@tool:phpunit"
 		],
 		"tool:php-cs-fixer": [
 			"php-cs-fixer fix --config Resources/Private/Build/PhpCsFixer.php"
@@ -84,20 +91,17 @@
 		"tool:php-cs-fixer-check": [
 			"php-cs-fixer fix --config Resources/Private/Build/PhpCsFixer.php --dry-run"
 		],
+		"tool:phpdoc": [
+			"docker run --rm -v $(pwd):/data phpdoc/phpdoc -d Classes -t .Build/phpdoc"
+		],
+		"tool:phpstan": [
+			"phpstan analyse Classes --memory-limit 1G --level 5"
+		],
 		"tool:phpunit": [
 			"phpunit --configuration=Tests/Unit/UnitTests.xml"
 		],
 		"tool:phpunit:functional": [
 			"phpunit --configuration=Tests/Functional/FunctionalTests.xml"
-		],
-		"tool:phpdoc": [
-			"docker run --rm -v $(pwd):/data phpdoc/phpdoc -d Classes -t .Build/phpdoc"
-		],
-		"tool:phpstan": [
-			"phpstan analyse -c phpstan.neon"
-		],
-		"post-autoload-dump": [
-			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
 		]
 	}
 }
