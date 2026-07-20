@@ -30,7 +30,7 @@
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.0",
 		"namelesscoder/typo3-repository-client": "1.2.0",
-		"phpstan/phpstan": "^0.12.82",
+		"phpstan/phpstan": "^1.8",
 		"squizlabs/php_codesniffer": "^2.6",
 		"typo3/testing-framework": "^8.3"
 	},
@@ -95,7 +95,7 @@
 			"docker run --rm -v $(pwd):/data phpdoc/phpdoc -d Classes -t .Build/phpdoc"
 		],
 		"tool:phpstan": [
-			"phpstan analyse Classes --memory-limit 1G --level 5"
+			"phpstan analyse --memory-limit 1G --level 5 Classes"
 		],
 		"tool:phpunit": [
 			"phpunit --configuration=Tests/Unit/UnitTests.xml"
