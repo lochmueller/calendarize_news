@@ -15,7 +15,7 @@ class NewsController extends \GeorgRinger\News\Controller\NewsController
      */
     protected $index;
 
-    public function initializeDetailAction()
+    public function initializeDetailAction(): void
     {
         if ($this->request->hasArgument('index')) {
             $index = $this->request->getArgument('index');

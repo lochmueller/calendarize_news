@@ -35,7 +35,7 @@ class IndexResult extends QueryResult
     /**
      * Loads the objects this QueryResult is supposed to hold.
      */
-    protected function initializeIndex()
+    protected function initializeIndex(): void
     {
         if (!\is_array($this->indexResult)) {
             $newsIds = [];
@@ -54,11 +54,11 @@ class IndexResult extends QueryResult
                 'startTime' => QueryInterface::ORDER_ASCENDING,
             ]);
             $this->indexResult = $query->matching(
-                $query->logicalAnd([
+                $query->logicalAnd(
                     $query->equals('foreignTable', 'tx_news_domain_model_news'),
                     $query->in('foreignUid', $newsIds),
                     $query->greaterThanOrEqual('startDate', DateTimeUtility::getNow()->format('Y-m-d')),
-                ])
+                )
             )->execute()->toArray();
         }
     }
@@ -66,7 +66,7 @@ class IndexResult extends QueryResult
     /**
      * Loads the objects this QueryResult is supposed to hold.
      */
-    protected function initialize()
+    protected function initialize(): void
     {
         if (!\is_array($this->queryResult)) {
             $this->initializeIndex();

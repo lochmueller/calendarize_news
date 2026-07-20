@@ -16,7 +16,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 class NewsOverwriteTest extends UnitTestCase
 {
-    public function testOverWriteNewsPropertiesByIndexObject()
+    public function testOverWriteNewsPropertiesByIndexObject(): void
     {
         $service = new NewsOverwrite();
 
