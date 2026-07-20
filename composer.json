@@ -24,7 +24,7 @@
 	"require": {
 		"php": "^8.2",
 		"georgringer/news": "^12.0 || ^13.0 || ^14.0",
-		"lochmueller/calendarize": "^13.0 || ^14.0",
+		"lochmueller/calendarize": "^13.0 || ^14.0 || ^15.0",
 		"typo3/cms-core": "^13.4"
 	},
 	"require-dev": {
