@@ -35,7 +35,7 @@ class IndexResult extends QueryResult
     /**
      * Loads the objects this QueryResult is supposed to hold.
      */
-    protected function initializeIndex()
+    protected function initializeIndex(): void
     {
         if (!\is_array($this->indexResult)) {
             $newsIds = [];
@@ -66,7 +66,7 @@ class IndexResult extends QueryResult
     /**
      * Loads the objects this QueryResult is supposed to hold.
      */
-    protected function initialize()
+    protected function initialize(): void
     {
         if (!\is_array($this->queryResult)) {
             $this->initializeIndex();

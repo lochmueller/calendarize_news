@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace HDNET\CalendarizeNews\EventListener;
 
 use TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent;
