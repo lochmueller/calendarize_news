@@ -54,11 +54,11 @@ class IndexResult extends QueryResult
                 'startTime' => QueryInterface::ORDER_ASCENDING,
             ]);
             $this->indexResult = $query->matching(
-                $query->logicalAnd([
+                $query->logicalAnd(
                     $query->equals('foreignTable', 'tx_news_domain_model_news'),
                     $query->in('foreignUid', $newsIds),
                     $query->greaterThanOrEqual('startDate', DateTimeUtility::getNow()->format('Y-m-d')),
-                ])
+                )
             )->execute()->toArray();
         }
     }
