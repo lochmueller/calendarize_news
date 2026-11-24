@@ -70,9 +70,6 @@
 		}
 	},
 	"scripts": {
-		"post-autoload-dump": [
-			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
-		],
 		"code-fix": [
 			"@tool:php-cs-fixer"
 		],
