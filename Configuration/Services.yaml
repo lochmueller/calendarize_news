@@ -6,13 +6,29 @@ services:
 
   HDNET\CalendarizeNews\:
     resource: '../Classes/*'
-    # TODO: see https://github.com/lochmueller/calendarize_news/issues/46
-    exclude:
-      - '../Classes/Persistence'
-      - '../Classes/Xclass/{NewsRepository,NewsController.php}'
+
+  HDNET\CalendarizeNews\Persistence\IndexQuery:
+    public: true
+    shared: false
+
+  HDNET\CalendarizeNews\Persistence\IndexResult:
+    public: true
+    shared: false
 
   HDNET\CalendarizeNews\EventListener\ModifyFlexformEvent:
     tags:
       - name: event.listener
         identifier: 'calendarize-news/modify-flexform'
         event: TYPO3\CMS\Core\Configuration\Event\AfterFlexFormDataStructureParsedEvent
+
+  HDNET\CalendarizeNews\EventListener\NewsListActionListener:
+    tags:
+      - name: event.listener
+        identifier: 'calendarize-news/news-list-index-selection'
+        event: GeorgRinger\News\Event\NewsListActionEvent
+
+  HDNET\CalendarizeNews\EventListener\NewsDetailActionListener:
+    tags:
+      - name: event.listener
+        identifier: 'calendarize-news/news-detail-index'
+        event: GeorgRinger\News\Event\NewsDetailActionEvent

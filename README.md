@@ -36,3 +36,10 @@ Based on this issue https://github.com/lochmueller/calendarize_news/issues/30
           type: PersistedAliasMapper
           tableName: tx_calendarize_domain_model_index
           routeFieldName: uid
+
+## Index based news list
+
+Enable `replaceNewsRepositoryByIndexSelection` in the extension configuration and set the ordering of the news list
+plugin to `calendarize` (add `calendarize` to `plugin.tx_news.settings.orderByAllowed`). The news list then contains
+one item per upcoming calendarize index, ordered by date (including pagination). Links in the list contain the index,
+so the detail view shows the date of the selected index.
