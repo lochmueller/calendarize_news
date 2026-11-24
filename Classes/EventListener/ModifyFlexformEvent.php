@@ -27,11 +27,9 @@ final class ModifyFlexformEvent
                 // Deprecated: remove when dropping TYPO3 v11 support and remove TCEforms & internal_type in Calendar.xml
                 $overwrite = $this->removeElementTceFormsRecursive($overwrite);
 
-                if (\is_array($overwrite)) {
-                    $parsedDataStructure = $event->getDataStructure();
-                    ArrayUtility::mergeRecursiveWithOverrule($parsedDataStructure, $overwrite);
-                    $event->setDataStructure($parsedDataStructure);
-                }
+                $parsedDataStructure = $event->getDataStructure();
+                ArrayUtility::mergeRecursiveWithOverrule($parsedDataStructure, $overwrite);
+                $event->setDataStructure($parsedDataStructure);
             }
         }
     }
